@@ -111,7 +111,7 @@ router.get('/temp', async (req, res) => {
       //
       main.bolumler.push(bolum);
     }
-    if (main.bolumler.length % 10 == 0) {
+    if (main.bolumler.length % 2 == 0) {
       writeResult(main);
     }
     w(deptNum, deptHtmlRes);
@@ -162,7 +162,7 @@ async function getDersler(
     };
     res.push(ders);
   }
-  return [];
+  return res;
 }
 
 async function getCourseInfo(
