@@ -15,7 +15,7 @@ import {
 import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
-import { p } from '@/utils/p';
+import { p,locations, removeNonNumbers } from '@/utils/p';
 
 const router = Router();
 
@@ -204,8 +204,12 @@ async function getCourseInfo(
   );
   // console.log('responz');
   // console.log(response);
-  let sectionsHtml = await courseInfoFetch.text();
-  fs.writeFileSync(`temp/${courseCode}.html`, sectionsHtml);
+  let sectionsHtmlString = await courseInfoFetch.text();
+  let dir = 'temp';
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
+  fs.writeFileSync(`temp/${courseCode}.html`, sectionsHtmlString);
   let sectionsDoc = new DOMParser({
     locator: {},
     errorHandler: {
@@ -215,32 +219,39 @@ async function getCourseInfo(
         console.error(e);
       },
     },
-  }).parseFromString(sectionsHtml);
-
+  }).parseFromString(sectionsHtmlString);
+  console.log("ewkk")
+  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]',sectionsDoc).toString())
+  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[1]',sectionsDoc).toString())
+  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[1]',sectionsDoc).toString())
+  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[2]',sectionsDoc).toString())
+  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]/FONT[1]/text()',sectionsDoc).toString())
+  p("done");
   let courseInfo: CourseInfo = {
-    department: '', //TODO
-    courseCode: 0, //TODO
-    courseName: '', //TODO
-    credit: '', //TODO
-    sectionlar: await getSectionBilgileri(sectionsDoc, setCookie),
+    department: xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]/FONT[1]/text()',sectionsDoc).toString(),
+    courseCode: parseInt(xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[2]/TD[1]/FONT/text()',sectionsDoc).toString()), 
+    courseName: xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[2]/TD[2]/FONT/text()',sectionsDoc).toString(),
+    credit: xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[3]/TD[1]/FONT/text()',sectionsDoc).toString(),
+    sectionlar: await getSectionBilgileri(sectionsHtmlString, setCookie,courseCode),
   };
   return courseInfo;
 }
 
 async function getSectionBilgileri(
-  sectionsDoc: Document,
+  sectionsHtmlString: string,
   setCookie: string,
+  courseCode: string
 ): Promise<Section[]> {
-  const sectionLen =
-    xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc)
-      .length /
-      2 -
-    1;
+  let submitSectionTextLocations = locations("submit_section",sectionsHtmlString)
+  const sectionLen = submitSectionTextLocations.length;
+  const sectionIdsStrings = submitSectionTextLocations.map(location => sectionsHtmlString.substring(location-15,location-5));
+  console.log(sectionIdsStrings);
+  const sectionIds = sectionIdsStrings.map(str=>parseInt(removeNonNumbers(str)));
   console.log('sectionLen', sectionLen);
   let res: Section[] = [];
   for (let i = 0; i < sectionLen; i++) {
-    let sectionId = (i + 1) * 2 + 1;
-    let htmlText = await fetch(
+    let sectionId = sectionIds[i];
+    let htmlResponse = await fetch(
       'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
       {
         headers: {
@@ -267,6 +278,8 @@ async function getSectionBilgileri(
         method: 'POST',
       },
     );
+    let html_Text = await htmlResponse.text()
+    fs.writeFileSync(`temp/${courseCode}.${sectionId}.html`,html_Text)
     let doc = new DOMParser({
       locator: {},
       errorHandler: {
@@ -276,13 +289,13 @@ async function getSectionBilgileri(
           console.error(e);
         },
       },
-    }).parseFromString(await htmlText.text());
-
+    }).parseFromString(html_Text);
+    
     let criterias: Criteria[] = getCriterias(doc);
 
     let section: Section = {
       instructor: '', //TODO
-      sectionNumber: 0, //TODO
+      sectionNumber: sectionId, //TODO
       criteria: criterias,
     };
     res.push(section);
@@ -390,9 +403,6 @@ function getCriterias(doc: Document): Criteria[] {
   let kacCriteria = xpath.select(criteriasBolumuX, doc).length - 1;
   let res: Criteria[] = [];
   for (let i = 0; i < kacCriteria; i++) {
-    // chromes
-    // startChar //*[@id="single_content"]/form/table[3]/tbody/tr[2]/td[2]/font
-    //  //*[@id="single_content"]/form/table[3]/tbody/tr[2]/td[9]/font
     let givenDeptX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
       i + 2
     }]/TD[1]/FONT/text()`;
