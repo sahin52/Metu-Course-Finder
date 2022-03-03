@@ -5,6 +5,7 @@ export interface Main {
     dersler: Ders[];
     name: string;
     code: number;
+    totalCourses: number;
     isKibris: boolean;
     isInfoFound: boolean
   }
