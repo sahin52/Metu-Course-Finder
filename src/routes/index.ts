@@ -30,8 +30,8 @@ router.get('/temp', async (req, res) => {
     const deptNum = allDeptsNum[i];
     console.log('deptNum');
     console.log(deptNum);
-    let deptHtmlRes = await (
-      await fetch(
+
+    let f = await fetch(
         'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
         {
           headers: {
@@ -50,16 +50,18 @@ router.get('/temp', async (req, res) => {
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             cookie:
-              '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Q8av7kEJYNJlpXlfhdwMWRIBR3XN2Tt5yBYuc89ZZ6yLTmSW74Gy5aozMO9yBWDgiraAThfED6KCyZyt7jyfMuBAqyBHWoXm2w4goIV0bI7vUs8gNbr41biLRWKczyWp',
-            Referer:
-              'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
+              '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; __sid=96e2dde3240ef372dd4e282dd9271ca52e99e434694b2f1ac1792111a61ad8005f39477f281d2aef8ddf15bff886c9a4070f89a1c8ec566cc29e3598b0dd4a05; phpSess_e7f8a2b66340bd43b00edc2a215826d5=e6xWDHqXZ8PcEyiDg84qzRIp2AtcIHS1xOXKkbeixoxpPwjovgVlFM11r2jPGfplvuclZ4rXs6PStVzF6BFXpejwF1P22ws0Zc2aj7CM0I0UegU4OuKD6Eh3jeK9Fv6v',
+            Referer: 'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/',
             'Referrer-Policy': 'strict-origin-when-cross-origin',
           },
           body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=20212&submit_CourseList=Submit&hidden_redir=Login`,
           method: 'POST',
         },
-      )
-    ).text();
+    );
+    let headers = f.headers;
+    let deptHtmlRes = await f.text();
+    let setCookiFromHeader = headers.get('Set-Cookie');
+    let setCooki = setCookiFromHeader!.slice(0, setCookiFromHeader!.length - 8);
     if (
       deptHtmlRes.includes(
         'Information about the department could not be found.',
@@ -101,7 +103,7 @@ router.get('/temp', async (req, res) => {
       console.log(totalCourses);
       let bolum: Bolum = {
         isInfoFound: true,
-        dersler: await getDersler(doc, totalCourses, deptNum),
+        dersler: await getDersler(doc, totalCourses, deptNum, setCooki),
         name: name,
         code: deptNum,
         totalCourses: totalCourses,
@@ -142,6 +144,7 @@ async function getDersler(
   derslerDoc: Document,
   totalCourses: number,
   deptNum: number,
+  setCookie: string
 ): Promise<Ders[]> {
   let res: Ders[] = [];
 
@@ -151,7 +154,7 @@ async function getDersler(
     }]/TD[2]/FONT/text()`;
     let courseCode = xpath.select(courseCodeXpath, derslerDoc).toString();
 
-    let courseInfo = await getCourseInfo(i, derslerDoc, courseCode);
+    let courseInfo = await getCourseInfo(i, derslerDoc, courseCode, setCookie);
     let prerequisite: Prerequisite[] = await getPrerequisite(
       derslerDoc,
       courseCode,
@@ -169,6 +172,7 @@ async function getCourseInfo(
   i: number,
   derslerDoc: Document,
   courseCode: string,
+  setCookie: string
 ): Promise<CourseInfo> {
   p('courseCode', courseCode);
   let courseInfoFetch = await fetch(
@@ -190,7 +194,7 @@ async function getCourseInfo(
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
         cookie:
-          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Q8av7kEJYNJlpXlfhdwMWRIBR3XN2Tt5yBYuc89ZZ6yLTmSW74Gy5aozMO9yBWDgiraAThfED6KCyZyt7jyfMuBAqyBHWoXm2w4goIV0bI7vUs8gNbr41biLRWKczyWp',
+          `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; __sid=96e2dde3240ef372dd4e282dd9271ca52e99e434694b2f1ac1792111a61ad8005f39477f281d2aef8ddf15bff886c9a4070f89a1c8ec566cc29e3598b0dd4a05; ${setCookie}`,
         Referer:
           'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -220,16 +224,18 @@ async function getCourseInfo(
     courseCode: 0, //TODO
     courseName: '', //TODO
     credit: '', //TODO
-    sectionlar: await getSectionBilgileri(sectionsDoc),
+    sectionlar: await getSectionBilgileri(sectionsDoc,setCookie),
   };
   return courseInfo;
 }
 
-async function getSectionBilgileri(sectionsDoc: Document): Promise<Section[]> {
-  console.log("len",xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc).length);
+async function getSectionBilgileri(sectionsDoc: Document,setCookie: string): Promise<Section[]> {
   const sectionLen =
-    xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc).length / 2 - 1;
-    console.log("sectionLen",sectionLen);
+    xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc)
+      .length /
+      2 -
+    1;
+  console.log('sectionLen', sectionLen);
   let res: Section[] = [];
   for (let i = 0; i < sectionLen; i++) {
     let sectionId = (i + 1) * 2 + 1;
@@ -252,7 +258,7 @@ async function getSectionBilgileri(sectionsDoc: Document): Promise<Section[]> {
           'sec-fetch-user': '?1',
           'upgrade-insecure-requests': '1',
           cookie:
-            '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Q8av7kEJYNJlpXlfhdwMWRIBR3XN2Tt5yBYuc89ZZ6yLTmSW74Gy5aozMO9yBWDgiraAThfED6KCyZyt7jyfMuBAqyBHWoXm2w4goIV0bI7vUs8gNbr41biLRWKczyWp',
+            `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; ${setCookie}`,
           Referer:
             'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
           'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -332,30 +338,49 @@ async function getPrerequisite(
     },
   }).parseFromString(textHtml);
 
-  let uzunluk = xpath.select(`//*[@id="single_content"]/form/TABLE[4]/TR`,doc).length-1;
+  let uzunluk =
+    xpath.select(`//*[@id="single_content"]/form/TABLE[4]/TR`, doc).length - 1;
   let res: Prerequisite[] = [];
   for (let i = 0; i < uzunluk; i++) {
-    let programCodeX  = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[1]/FONT/text()`;
-    let deptVersionX  = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[2]/FONT/text()`;
-    let courseCodeX   = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[3]/FONT/text()`;
-    let nameX         = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[4]/FONT/text()`;
-    let creditX       = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[5]/FONT/text()`;
-    let setNoX        = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[6]/FONT/text()`;
-    let minGradeX     = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[7]/FONT/text()`;
-    let typeX         = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[8]/FONT/text()`;
-    let positionX     = `//*[@id="single_content"]/form/TABLE[4]/TR[${i+2}]/TD[9]/FONT/text()`;
-    let prerequisite:Prerequisite={
-      ProgramCode: parseInt(xpath.select(programCodeX,doc).toString()),
-      DeptVersion:  parseInt(xpath.select(deptVersionX,doc).toString()),
-      CourseCode:  parseInt(xpath.select(courseCodeX,doc).toString()),
-      Name:  xpath.select(nameX,doc).toString(),
-      Credit: xpath.select(creditX,doc).toString(),
-      SetNo:  parseInt(xpath.select(setNoX,doc).toString()),
-      MinGrade: xpath.select(minGradeX,doc).toString(),
-      Type: xpath.select(typeX,doc).toString(),
-      Position: xpath.select(positionX,doc).toString(),
-    }
-    res.push(prerequisite)
+    let programCodeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[1]/FONT/text()`;
+    let deptVersionX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[2]/FONT/text()`;
+    let courseCodeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[3]/FONT/text()`;
+    let nameX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[4]/FONT/text()`;
+    let creditX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[5]/FONT/text()`;
+    let setNoX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[6]/FONT/text()`;
+    let minGradeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[7]/FONT/text()`;
+    let typeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[8]/FONT/text()`;
+    let positionX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[9]/FONT/text()`;
+    let prerequisite: Prerequisite = {
+      ProgramCode: parseInt(xpath.select(programCodeX, doc).toString()),
+      DeptVersion: parseInt(xpath.select(deptVersionX, doc).toString()),
+      CourseCode: parseInt(xpath.select(courseCodeX, doc).toString()),
+      Name: xpath.select(nameX, doc).toString(),
+      Credit: xpath.select(creditX, doc).toString(),
+      SetNo: parseInt(xpath.select(setNoX, doc).toString()),
+      MinGrade: xpath.select(minGradeX, doc).toString(),
+      Type: xpath.select(typeX, doc).toString(),
+      Position: xpath.select(positionX, doc).toString(),
+    };
+    res.push(prerequisite);
   }
   return res;
 }
