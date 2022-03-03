@@ -6,6 +6,7 @@ import { Router } from 'express';
 import {
   Bolum,
   CourseInfo,
+  Criteria,
   Ders,
   Main,
   Prerequisite,
@@ -184,7 +185,7 @@ async function getCourseInfo(
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
         cookie:
-          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Me2CWS88sguBhTLhgZmeBw69YjIp9oHpmUTw5zBNk87W8eAGEvbeBfUwzEYJxhUHrtgm6AdBn7P7JXRrl2ylTbmuM7TJqSBP11wOO6W1V5qkApNWvsYNBcqVDho6jg42',
+          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=SIKVNGfSF1YCYxbBcxjeoL3VKhms7WsruFiSUOa1pVGrExcpuldfpSftcC5bvSR7aaw8k7p7vhoysf7a8kjJY4uAthEqMQiQfOfHgv23dWjIA4b5Kscro4zIViG9qvaM',
         Referer:
           'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -197,7 +198,7 @@ async function getCourseInfo(
   // console.log(response);
   let sectionsHtml = await courseInfoFetch.text();
   fs.writeFileSync(`temp/${courseCode}.html`, sectionsHtml);
-  let senctionsDoc = new DOMParser({
+  let sectionsDoc = new DOMParser({
     locator: {},
     errorHandler: {
       warning: function (w) {},
@@ -210,7 +211,7 @@ async function getCourseInfo(
 
   let ilkSectionIcin =
     'string(//*[@id="single_content"]/form/TABLE[3]/TR[3]/TD[1]/FONT/INPUT/@VALUE)';
-  let r = xpath.select(ilkSectionIcin, senctionsDoc).toString();
+  let r = xpath.select(ilkSectionIcin, sectionsDoc).toString();
   let ikiChrome =
     '//*[@id="single_content"]/form/table[3]/tbody/tr[5]/td[1]/font/input';
   let ikiReel =
@@ -221,13 +222,17 @@ async function getCourseInfo(
     courseCode: 0,
     courseName: '',
     credit: '',
-    sectionlar: await getSectionBilgileri(),
+    sectionlar: await getSectionBilgileri(sectionsDoc),
   };
   return courseInfo;
 }
 
-async function getSectionBilgileri(): Promise<Section[]> {
-  fetch('https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php', {
+async function getSectionBilgileri(sectionsDoc: Document): Promise<Section[]> {
+  const sectionLen = xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR',sectionsDoc).length/2-1;
+  let res: Section[] = []
+  for (let i = 0; i < sectionLen; i++) {
+    let sectionId = (i+1)*2+1;
+    let htmlText = await fetch('https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php', {
     headers: {
       accept:
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -244,15 +249,37 @@ async function getSectionBilgileri(): Promise<Section[]> {
       'sec-fetch-user': '?1',
       'upgrade-insecure-requests': '1',
       cookie:
-        '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Gq3P9i2Faf1TwCtYyKx8VJZ18s09xP9tuCOmrE1MMpM0MeX0aBGAW76332w9rd0gci9JMOB0W8ZaeBiQrcd2qLam1r2Vnpi49NfM8NzswtCnVJDouW3QVV4URVKsDKZF',
+        '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=SIKVNGfSF1YCYxbBcxjeoL3VKhms7WsruFiSUOa1pVGrExcpuldfpSftcC5bvSR7aaw8k7p7vhoysf7a8kjJY4uAthEqMQiQfOfHgv23dWjIA4b5Kscro4zIViG9qvaM',
       Referer:
         'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
     },
-    body: 'submit_section=1&hidden_redir=Course_Info',
+    body: `submit_section=${sectionId}&hidden_redir=Course_Info`,
     method: 'POST',
   });
-  throw new Error();
+  let doc = new DOMParser({
+    locator: {},
+    errorHandler: {
+      warning: function (w) {},
+      error: function (e) {},
+      fatalError: function (e) {
+        console.error(e);
+      },
+    },
+  }).parseFromString(await htmlText.text());
+
+  let criterias:Criteria[] = getCriterias(doc)
+  
+ 
+  let section: Section = {
+    instructor: '',
+    sectionNumber: 0,
+    criteria: criterias
+  }
+  res.push(section);
+  }
+  
+  return res;
 }
 
 function getPrerequisite(
@@ -261,3 +288,38 @@ function getPrerequisite(
 ): Promise<Prerequisite[]> {
   throw new Error('Function not implemented.');
 }
+function getCriterias(doc: Document): Criteria[] {
+  let criteriasBolumuX = '//*[@id="single_content"]/form/TABLE[3]/TR'
+  let kacCriteria = xpath.select(criteriasBolumuX,doc).length-1;
+  let res: Criteria[] = []
+  for (let i = 0; i < kacCriteria; i++) {
+    // chromes
+    // startChar //*[@id="single_content"]/form/table[3]/tbody/tr[2]/td[2]/font
+    //  //*[@id="single_content"]/form/table[3]/tbody/tr[2]/td[9]/font
+    let givenDeptX = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[1]/FONT/text()`
+    let startCharX = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[2]/FONT/text()`
+    let endCharX   = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[3]/FONT/text()`
+    let minCumGpaX = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[4]/FONT/text()`
+    let maxCumGpaX = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[5]/FONT/text()`
+    let minYearX   = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[6]/FONT/text()`
+    let maxYearX   = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[7]/FONT/text()`
+    let startGradeX= `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[8]/FONT/text()`
+    let endGradeX  = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[9]/FONT/text()`
+
+    let criteria: Criteria ={
+      givenDept: xpath.select(givenDeptX,doc).toString(),
+      startChar: xpath.select(startCharX,doc).toString(),
+      endChar: xpath.select(endCharX,doc).toString(),
+      minCumGpa: parseFloat(xpath.select(minCumGpaX,doc).toString()),
+      maxCumGpa: parseFloat(xpath.select(maxCumGpaX,doc).toString()),
+      minYear: parseInt(xpath.select(minYearX,doc).toString()),
+      maxYear: parseInt(xpath.select(maxYearX,doc).toString()),
+      startGrade: xpath.select(startGradeX,doc).toString(),
+      endGrade: xpath.select(endGradeX,doc).toString(),
+    }
+    res.push(criteria);
+    
+  }
+  return res;
+}
+

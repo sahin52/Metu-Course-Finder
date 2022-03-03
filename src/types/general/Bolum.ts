@@ -45,7 +45,7 @@ export interface Main {
     maxCumGpa: number;
     minYear: number;
     maxYear: number;
-    startGrade: "Hic almayanlar alabilir"|"Herkes alabilir";
-    endGrade: "Hic almayanlar alabilir"|"Herkes alabilir";
+    startGrade: string //"Hic almayanlar alabilir"|"Herkes alabilir";
+    endGrade: string // "Hic almayanlar alabilir"|"Herkes alabilir";
   }
   
