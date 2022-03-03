@@ -32,31 +32,31 @@ router.get('/temp', async (req, res) => {
     console.log(deptNum);
 
     let f = await fetch(
-        'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
-        {
-          headers: {
-            accept:
-              'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'sec-ch-ua':
-              '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'iframe',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            cookie:
-              '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; __sid=96e2dde3240ef372dd4e282dd9271ca52e99e434694b2f1ac1792111a61ad8005f39477f281d2aef8ddf15bff886c9a4070f89a1c8ec566cc29e3598b0dd4a05; phpSess_e7f8a2b66340bd43b00edc2a215826d5=e6xWDHqXZ8PcEyiDg84qzRIp2AtcIHS1xOXKkbeixoxpPwjovgVlFM11r2jPGfplvuclZ4rXs6PStVzF6BFXpejwF1P22ws0Zc2aj7CM0I0UegU4OuKD6Eh3jeK9Fv6v',
-            Referer: 'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/',
-            'Referrer-Policy': 'strict-origin-when-cross-origin',
-          },
-          body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=20212&submit_CourseList=Submit&hidden_redir=Login`,
-          method: 'POST',
+      'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
+      {
+        headers: {
+          accept:
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+          'accept-language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+          'cache-control': 'max-age=0',
+          'content-type': 'application/x-www-form-urlencoded',
+          'sec-ch-ua':
+            '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
+          'sec-ch-ua-mobile': '?0',
+          'sec-ch-ua-platform': '"Windows"',
+          'sec-fetch-dest': 'iframe',
+          'sec-fetch-mode': 'navigate',
+          'sec-fetch-site': 'same-origin',
+          'sec-fetch-user': '?1',
+          'upgrade-insecure-requests': '1',
+          cookie:
+            '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; __sid=96e2dde3240ef372dd4e282dd9271ca52e99e434694b2f1ac1792111a61ad8005f39477f281d2aef8ddf15bff886c9a4070f89a1c8ec566cc29e3598b0dd4a05; phpSess_e7f8a2b66340bd43b00edc2a215826d5=e6xWDHqXZ8PcEyiDg84qzRIp2AtcIHS1xOXKkbeixoxpPwjovgVlFM11r2jPGfplvuclZ4rXs6PStVzF6BFXpejwF1P22ws0Zc2aj7CM0I0UegU4OuKD6Eh3jeK9Fv6v',
+          Referer: 'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
         },
+        body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=20212&submit_CourseList=Submit&hidden_redir=Login`,
+        method: 'POST',
+      },
     );
     let headers = f.headers;
     let deptHtmlRes = await f.text();
@@ -144,7 +144,7 @@ async function getDersler(
   derslerDoc: Document,
   totalCourses: number,
   deptNum: number,
-  setCookie: string
+  setCookie: string,
 ): Promise<Ders[]> {
   let res: Ders[] = [];
 
@@ -172,7 +172,7 @@ async function getCourseInfo(
   i: number,
   derslerDoc: Document,
   courseCode: string,
-  setCookie: string
+  setCookie: string,
 ): Promise<CourseInfo> {
   p('courseCode', courseCode);
   let courseInfoFetch = await fetch(
@@ -193,8 +193,7 @@ async function getCourseInfo(
         'sec-fetch-site': 'same-origin',
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
-        cookie:
-          `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; __sid=96e2dde3240ef372dd4e282dd9271ca52e99e434694b2f1ac1792111a61ad8005f39477f281d2aef8ddf15bff886c9a4070f89a1c8ec566cc29e3598b0dd4a05; ${setCookie}`,
+        cookie: `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; __sid=96e2dde3240ef372dd4e282dd9271ca52e99e434694b2f1ac1792111a61ad8005f39477f281d2aef8ddf15bff886c9a4070f89a1c8ec566cc29e3598b0dd4a05; ${setCookie}`,
         Referer:
           'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -218,18 +217,20 @@ async function getCourseInfo(
     },
   }).parseFromString(sectionsHtml);
 
-
   let courseInfo: CourseInfo = {
     department: '', //TODO
     courseCode: 0, //TODO
     courseName: '', //TODO
     credit: '', //TODO
-    sectionlar: await getSectionBilgileri(sectionsDoc,setCookie),
+    sectionlar: await getSectionBilgileri(sectionsDoc, setCookie),
   };
   return courseInfo;
 }
 
-async function getSectionBilgileri(sectionsDoc: Document,setCookie: string): Promise<Section[]> {
+async function getSectionBilgileri(
+  sectionsDoc: Document,
+  setCookie: string,
+): Promise<Section[]> {
   const sectionLen =
     xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc)
       .length /
@@ -257,8 +258,7 @@ async function getSectionBilgileri(sectionsDoc: Document,setCookie: string): Pro
           'sec-fetch-site': 'same-origin',
           'sec-fetch-user': '?1',
           'upgrade-insecure-requests': '1',
-          cookie:
-            `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; ${setCookie}`,
+          cookie: `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; ${setCookie}`,
           Referer:
             'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
           'Referrer-Policy': 'strict-origin-when-cross-origin',
