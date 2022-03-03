@@ -218,67 +218,73 @@ async function getCourseInfo(
     'string(//*[@id="single_content"]/form/TABLE[3]/TR[5]/TD[1]/FONT/INPUT/@VALUE)';
   p('r->', r);
   let courseInfo: CourseInfo = {
-    department: '',//TODO
-    courseCode: 0,//TODO
-    courseName: '',//TODO
-    credit: '',//TODO
+    department: '', //TODO
+    courseCode: 0, //TODO
+    courseName: '', //TODO
+    credit: '', //TODO
     sectionlar: await getSectionBilgileri(sectionsDoc),
   };
   return courseInfo;
 }
 
 async function getSectionBilgileri(sectionsDoc: Document): Promise<Section[]> {
-  const sectionLen = xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR',sectionsDoc).length/2-1;
-  let res: Section[] = []
+  const sectionLen =
+    xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc)
+      .length /
+      2 -
+    1;
+  let res: Section[] = [];
   for (let i = 0; i < sectionLen; i++) {
-    let sectionId = (i+1)*2+1;
-    let htmlText = await fetch('https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php', {
-    headers: {
-      accept:
-        'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-      'accept-language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
-      'cache-control': 'max-age=0',
-      'content-type': 'application/x-www-form-urlencoded',
-      'sec-ch-ua':
-        '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"Windows"',
-      'sec-fetch-dest': 'iframe',
-      'sec-fetch-mode': 'navigate',
-      'sec-fetch-site': 'same-origin',
-      'sec-fetch-user': '?1',
-      'upgrade-insecure-requests': '1',
-      cookie:
-        '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=SIKVNGfSF1YCYxbBcxjeoL3VKhms7WsruFiSUOa1pVGrExcpuldfpSftcC5bvSR7aaw8k7p7vhoysf7a8kjJY4uAthEqMQiQfOfHgv23dWjIA4b5Kscro4zIViG9qvaM',
-      Referer:
-        'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
-      'Referrer-Policy': 'strict-origin-when-cross-origin',
-    },
-    body: `submit_section=${sectionId}&hidden_redir=Course_Info`,
-    method: 'POST',
-  });
-  let doc = new DOMParser({
-    locator: {},
-    errorHandler: {
-      warning: function (w) {},
-      error: function (e) {},
-      fatalError: function (e) {
-        console.error(e);
+    let sectionId = (i + 1) * 2 + 1;
+    let htmlText = await fetch(
+      'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
+      {
+        headers: {
+          accept:
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+          'accept-language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+          'cache-control': 'max-age=0',
+          'content-type': 'application/x-www-form-urlencoded',
+          'sec-ch-ua':
+            '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
+          'sec-ch-ua-mobile': '?0',
+          'sec-ch-ua-platform': '"Windows"',
+          'sec-fetch-dest': 'iframe',
+          'sec-fetch-mode': 'navigate',
+          'sec-fetch-site': 'same-origin',
+          'sec-fetch-user': '?1',
+          'upgrade-insecure-requests': '1',
+          cookie:
+            '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=SIKVNGfSF1YCYxbBcxjeoL3VKhms7WsruFiSUOa1pVGrExcpuldfpSftcC5bvSR7aaw8k7p7vhoysf7a8kjJY4uAthEqMQiQfOfHgv23dWjIA4b5Kscro4zIViG9qvaM',
+          Referer:
+            'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+        },
+        body: `submit_section=${sectionId}&hidden_redir=Course_Info`,
+        method: 'POST',
       },
-    },
-  }).parseFromString(await htmlText.text());
+    );
+    let doc = new DOMParser({
+      locator: {},
+      errorHandler: {
+        warning: function (w) {},
+        error: function (e) {},
+        fatalError: function (e) {
+          console.error(e);
+        },
+      },
+    }).parseFromString(await htmlText.text());
 
-  let criterias:Criteria[] = getCriterias(doc)
-  
- 
-  let section: Section = {
-    instructor: '',//TODO
-    sectionNumber: 0,//TODO
-    criteria: criterias
+    let criterias: Criteria[] = getCriterias(doc);
+
+    let section: Section = {
+      instructor: '', //TODO
+      sectionNumber: 0, //TODO
+      criteria: criterias,
+    };
+    res.push(section);
   }
-  res.push(section);
-  }
-  
+
   return res;
 }
 
@@ -286,62 +292,84 @@ function getPrerequisite(
   i: number,
   derslerDoc: Document,
 ): Promise<Prerequisite[]> {
-
-  let response = fetch("https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php", {
-    "headers": {
-      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-      "accept-language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
-      "cache-control": "max-age=0",
-      "content-type": "application/x-www-form-urlencoded",
-      "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"",
-      "sec-ch-ua-mobile": "?0",
-      "sec-ch-ua-platform": "\"Windows\"",
-      "sec-fetch-dest": "iframe",
-      "sec-fetch-mode": "navigate",
-      "sec-fetch-site": "same-origin",
-      "sec-fetch-user": "?1",
-      "upgrade-insecure-requests": "1",
-      "cookie": "_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=cE4MDujnhX9nEPQJb25ki0LYjWvQoGUfNEI4SahEbB5DPEXRmSr14m0TKgTsyhKijeeJrQWCTOm6ldhdw0K0GxjrjYGyYaUJvSyb5L5kj0WMlEKeYgk9DIOrEI49h3kE",
-      "Referer": "https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php",
-      "Referrer-Policy": "strict-origin-when-cross-origin"
+  let response = fetch(
+    'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
+    {
+      headers: {
+        accept:
+          'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'accept-language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cache-control': 'max-age=0',
+        'content-type': 'application/x-www-form-urlencoded',
+        'sec-ch-ua':
+          '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'iframe',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'same-origin',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        cookie:
+          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=cE4MDujnhX9nEPQJb25ki0LYjWvQoGUfNEI4SahEbB5DPEXRmSr14m0TKgTsyhKijeeJrQWCTOm6ldhdw0K0GxjrjYGyYaUJvSyb5L5kj0WMlEKeYgk9DIOrEI49h3kE',
+        Referer:
+          'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+      },
+      body: 'SubmitPrerequisite=Prerequisite&text_course_code=5700204&hidden_redir=Course_List',
+      method: 'POST',
     },
-    "body": "SubmitPrerequisite=Prerequisite&text_course_code=5700204&hidden_redir=Course_List",
-    "method": "POST"
-  });
-  
+  );
 }
-function getCriterias(doc: Document): Criteria[] { //DONE
-  let criteriasBolumuX = '//*[@id="single_content"]/form/TABLE[3]/TR'
-  let kacCriteria = xpath.select(criteriasBolumuX,doc).length-1;
-  let res: Criteria[] = []
+function getCriterias(doc: Document): Criteria[] {
+  //DONE
+  let criteriasBolumuX = '//*[@id="single_content"]/form/TABLE[3]/TR';
+  let kacCriteria = xpath.select(criteriasBolumuX, doc).length - 1;
+  let res: Criteria[] = [];
   for (let i = 0; i < kacCriteria; i++) {
     // chromes
     // startChar //*[@id="single_content"]/form/table[3]/tbody/tr[2]/td[2]/font
     //  //*[@id="single_content"]/form/table[3]/tbody/tr[2]/td[9]/font
-    let givenDeptX = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[1]/FONT/text()`
-    let startCharX = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[2]/FONT/text()`
-    let endCharX   = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[3]/FONT/text()`
-    let minCumGpaX = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[4]/FONT/text()`
-    let maxCumGpaX = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[5]/FONT/text()`
-    let minYearX   = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[6]/FONT/text()`
-    let maxYearX   = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[7]/FONT/text()`
-    let startGradeX= `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[8]/FONT/text()`
-    let endGradeX  = `//*[@id="single_content"]/form/TABLE[3]/TR[${i+2}]/TD[9]/FONT/text()`
+    let givenDeptX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[1]/FONT/text()`;
+    let startCharX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[2]/FONT/text()`;
+    let endCharX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[3]/FONT/text()`;
+    let minCumGpaX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[4]/FONT/text()`;
+    let maxCumGpaX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[5]/FONT/text()`;
+    let minYearX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[6]/FONT/text()`;
+    let maxYearX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[7]/FONT/text()`;
+    let startGradeX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[8]/FONT/text()`;
+    let endGradeX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
+      i + 2
+    }]/TD[9]/FONT/text()`;
 
-    let criteria: Criteria ={
-      givenDept: xpath.select(givenDeptX,doc).toString(),
-      startChar: xpath.select(startCharX,doc).toString(),
-      endChar: xpath.select(endCharX,doc).toString(),
-      minCumGpa: parseFloat(xpath.select(minCumGpaX,doc).toString()),
-      maxCumGpa: parseFloat(xpath.select(maxCumGpaX,doc).toString()),
-      minYear: parseInt(xpath.select(minYearX,doc).toString()),
-      maxYear: parseInt(xpath.select(maxYearX,doc).toString()),
-      startGrade: xpath.select(startGradeX,doc).toString(),
-      endGrade: xpath.select(endGradeX,doc).toString(),
-    }
+    let criteria: Criteria = {
+      givenDept: xpath.select(givenDeptX, doc).toString(),
+      startChar: xpath.select(startCharX, doc).toString(),
+      endChar: xpath.select(endCharX, doc).toString(),
+      minCumGpa: parseFloat(xpath.select(minCumGpaX, doc).toString()),
+      maxCumGpa: parseFloat(xpath.select(maxCumGpaX, doc).toString()),
+      minYear: parseInt(xpath.select(minYearX, doc).toString()),
+      maxYear: parseInt(xpath.select(maxYearX, doc).toString()),
+      startGrade: xpath.select(startGradeX, doc).toString(),
+      endGrade: xpath.select(endGradeX, doc).toString(),
+    };
     res.push(criteria);
-    
   }
   return res;
 }
-
