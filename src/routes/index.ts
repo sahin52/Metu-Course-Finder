@@ -1,7 +1,7 @@
 import * as homeController from '@/controller/home';
 
 import fetch from 'cross-fetch';
-import fs, { write } from 'fs';
+import fs, { cp, write } from 'fs';
 import { Router } from 'express';
 import { Bolum, Ders, Main } from '@/types/general/Bolum';
 import xpath from 'xpath';
@@ -142,8 +142,9 @@ async function getDersler(
   for (let i = 0; i < totalCourses; i++) {
     let courseCodeXpath = `//*[@id="single_content"]/form/TABLE[4]/TR[${
       i + 2
-    }]/TD[2]`;
+    }]/TD[2]/FONT/text()`;
     let courseCode = xpath.select(courseCodeXpath, doc).toString();
+
     p('courseCode', courseCode);
     let response = await fetch(
       'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
@@ -173,11 +174,26 @@ async function getDersler(
         method: 'POST',
       },
     );
-    console.log('responz');
-    console.log(response);
-    let text = await response.text();
-    fs.writeFileSync(`temp/${courseCode}.html`, text);
-    
+    // console.log('responz');
+    // console.log(response);
+    let sectionsHtml = await response.text();
+    fs.writeFileSync(`temp/${courseCode}.html`, sectionsHtml);
+    let senctionsDoc = new DOMParser({
+        locator: {},
+        errorHandler: {
+          warning: function (w) {},
+          error: function (e) {},
+          fatalError: function (e) {
+            console.error(e);
+          },
+        },
+      }).parseFromString(sectionsHtml);
+
+    let tempXpath = 'string(//*[@id="single_content"]/form/TABLE[3]/TR[3]/TD[1]/FONT/INPUT/@VALUE)'
+    let t1 ='//*[@id="single_content"]/form/table[3]/tbody/tr[3]/td[1]'
+    let chrome = '//*[@id="single_content"]/form/table[3]/tbody/tr[3]/td[1]/font/input'
+    let r = xpath.select(tempXpath,senctionsDoc).toString();
+    p("r->",r);
     throw new Error('unimplement');
   }
   return [];
