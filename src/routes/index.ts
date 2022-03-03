@@ -116,7 +116,7 @@ router.get('/temp', async (req, res) => {
     }
     w(deptNum, deptHtmlRes);
 
-    if (i > 11) break; // DEBUG
+    if (i > 1) break; // DEBUG
   }
   writeResult(main);
 
@@ -214,14 +214,7 @@ async function getCourseInfo(
     },
   }).parseFromString(sectionsHtml);
 
-  let ilkSectionIcin =
-    'string(//*[@id="single_content"]/form/TABLE[3]/TR[3]/TD[1]/FONT/INPUT/@VALUE)';
-  let r = xpath.select(ilkSectionIcin, sectionsDoc).toString();
-  let ikiChrome =
-    '//*[@id="single_content"]/form/table[3]/tbody/tr[5]/td[1]/font/input';
-  let ikiReel =
-    'string(//*[@id="single_content"]/form/TABLE[3]/TR[5]/TD[1]/FONT/INPUT/@VALUE)';
-  p('r->', r);
+
   let courseInfo: CourseInfo = {
     department: '', //TODO
     courseCode: 0, //TODO
@@ -233,11 +226,10 @@ async function getCourseInfo(
 }
 
 async function getSectionBilgileri(sectionsDoc: Document): Promise<Section[]> {
+  console.log("len",xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc).length);
   const sectionLen =
-    xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc)
-      .length /
-      2 -
-    1;
+    xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR', sectionsDoc).length / 2 - 1;
+    console.log("sectionLen",sectionLen);
   let res: Section[] = [];
   for (let i = 0; i < sectionLen; i++) {
     let sectionId = (i + 1) * 2 + 1;
