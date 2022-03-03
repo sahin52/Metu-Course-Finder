@@ -50,7 +50,7 @@ router.get('/temp', async (req, res) => {
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             cookie:
-              '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=SIKVNGfSF1YCYxbBcxjeoL3VKhms7WsruFiSUOa1pVGrExcpuldfpSftcC5bvSR7aaw8k7p7vhoysf7a8kjJY4uAthEqMQiQfOfHgv23dWjIA4b5Kscro4zIViG9qvaM',
+              '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Q8av7kEJYNJlpXlfhdwMWRIBR3XN2Tt5yBYuc89ZZ6yLTmSW74Gy5aozMO9yBWDgiraAThfED6KCyZyt7jyfMuBAqyBHWoXm2w4goIV0bI7vUs8gNbr41biLRWKczyWp',
             Referer:
               'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
             'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -190,7 +190,7 @@ async function getCourseInfo(
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
         cookie:
-          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=SIKVNGfSF1YCYxbBcxjeoL3VKhms7WsruFiSUOa1pVGrExcpuldfpSftcC5bvSR7aaw8k7p7vhoysf7a8kjJY4uAthEqMQiQfOfHgv23dWjIA4b5Kscro4zIViG9qvaM',
+          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Q8av7kEJYNJlpXlfhdwMWRIBR3XN2Tt5yBYuc89ZZ6yLTmSW74Gy5aozMO9yBWDgiraAThfED6KCyZyt7jyfMuBAqyBHWoXm2w4goIV0bI7vUs8gNbr41biLRWKczyWp',
         Referer:
           'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -260,7 +260,7 @@ async function getSectionBilgileri(sectionsDoc: Document): Promise<Section[]> {
           'sec-fetch-user': '?1',
           'upgrade-insecure-requests': '1',
           cookie:
-            '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=SIKVNGfSF1YCYxbBcxjeoL3VKhms7WsruFiSUOa1pVGrExcpuldfpSftcC5bvSR7aaw8k7p7vhoysf7a8kjJY4uAthEqMQiQfOfHgv23dWjIA4b5Kscro4zIViG9qvaM',
+            '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Q8av7kEJYNJlpXlfhdwMWRIBR3XN2Tt5yBYuc89ZZ6yLTmSW74Gy5aozMO9yBWDgiraAThfED6KCyZyt7jyfMuBAqyBHWoXm2w4goIV0bI7vUs8gNbr41biLRWKczyWp',
           Referer:
             'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
           'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -316,7 +316,7 @@ async function getPrerequisite(
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
         cookie:
-          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; phpSess_e7f8a2b66340bd43b00edc2a215826d5=SIKVNGfSF1YCYxbBcxjeoL3VKhms7WsruFiSUOa1pVGrExcpuldfpSftcC5bvSR7aaw8k7p7vhoysf7a8kjJY4uAthEqMQiQfOfHgv23dWjIA4b5Kscro4zIViG9qvaM',
+          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Q8av7kEJYNJlpXlfhdwMWRIBR3XN2Tt5yBYuc89ZZ6yLTmSW74Gy5aozMO9yBWDgiraAThfED6KCyZyt7jyfMuBAqyBHWoXm2w4goIV0bI7vUs8gNbr41biLRWKczyWp',
         Referer:
           'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
