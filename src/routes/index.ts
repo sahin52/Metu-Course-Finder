@@ -20,6 +20,8 @@ import { p,locations, removeNonNumbers } from '@/utils/p';
 const router = Router();
 
 router.get('/', homeController.getAppInfo);
+router.get('/read',homeController.getIlkGiris);
+homeController.readFunc()
 router.get('/temp', async (req, res) => {
   const result = { deneme: 123 };
   let allDeptsNum: number[] = JSON.parse(
@@ -400,8 +402,12 @@ async function getPrerequisite(
 function getCriterias(doc: Document): Criteria[] {
   //DONE
   let criteriasBolumuX = '//*[@id="single_content"]/form/TABLE[3]/TR';
+  // /html/body/div/div/div/form/TABLE[6]/TR/TD/FONT/B/TR/TD
   let kacCriteria = xpath.select(criteriasBolumuX, doc).length - 1;
+  throw new Error();
   let res: Criteria[] = [];
+  //*[@id="single_content"]/form/table[3]/tbody/tr[2]/td[1]/font
+
   for (let i = 0; i < kacCriteria; i++) {
     let givenDeptX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
       i + 2
