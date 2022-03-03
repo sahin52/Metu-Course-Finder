@@ -69,22 +69,32 @@ router.get('/temp', async (req, res) => {
     }
     //else
     else{
-        let doc = new DOMParser().parseFromString(deptHtmlRes);
+        let doc = new DOMParser({
+            locator: {},
+            errorHandler: { warning: function (w) { }, 
+            error: function (e) { }, 
+            fatalError: function (e) { console.error(e) } }
+        }).parseFromString(deptHtmlRes);
 
-        var node = xpath.select('//*[@id="single_content"]/form/table[4]/tbody/tr[2]/td[2]', doc)
-        console.log("asdqwe")
-        console.log(node);
-        console.log("asd2qwe")
-        // console.log(JSON.stringify(node));
-        console.log("asd3qwe")
-        // console.log(JSON.stringify(node.toString()));
-        console.log("asd4qwe")
+        let totalCourses = xpath.select('//*[@id="single_content"]/form/TABLE[4]/TR', doc).length-1;
+        let name = xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR/TD[1]/FONT/text()',doc).toString();
+        console.log(totalCourses);
+        let bolum: Bolum = {
+            isInfoFound: true,
+            dersler: [],
+            name: name,
+            code: deptNum,
+            isKibris: name.includes("Kuzey K"),
+          };
+        
+        let courseCode = xpath.select('//*[@id="single_content"]/form/TABLE[4]/TR[2]/TD[2]/FONT/text()', doc).toString();
+        
+
         if (main.bolumler.length % 10 == 0) {
             writeResult(main);
-
           }
     }
-    //w(deptNum,deptRes);
+    w(deptNum,deptHtmlRes);
 
     if(i>11) break;
   }
@@ -126,6 +136,9 @@ function writeResult(main: Main) {
   );
 }
 function w(deptnum: number,text: any){
-    fs.mkdirSync('temp');
+    let dir='temp'
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
     fs.writeFileSync(`temp/${deptnum}.html`,text);
 }
