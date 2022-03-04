@@ -206,14 +206,8 @@ export function getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString: st
   console.log(sectionIdsStrings);
   const sectionIds = sectionIdsStrings.map(str => parseInt(removeNonNumbers(str)));
   console.log('sectionLen', sectionLen);
-  let instrunctorNameStartLoc = submitSectionTextLocations.map(location=>sectionsHtmlString.slice(location).indexOf("FACE=ARIAL")+10+location)
-  console.log(instrunctorNameStartLoc);
-  console.log(submitSectionTextLocations)
-  console.log(sectionsHtmlString.slice(instrunctorNameStartLoc[0]-100));
-  p("********************")
-  let nameEnd = instrunctorNameStartLoc.map(location=>sectionsHtmlString.slice(location).indexOf("</FONT>"))
+  let instrunctorNameStartLoc = submitSectionTextLocations.map(location=>sectionsHtmlString.slice(location).indexOf("FACE=ARIAL")+11+location)
+  let nameEnd = instrunctorNameStartLoc.map(location=>sectionsHtmlString.slice(location).indexOf("</FONT>")+location)
   let names = nameEnd.map((location,i)=>sectionsHtmlString.substring(instrunctorNameStartLoc[i],location))
-  console.log(names)
-  console.log("ANAN ZAA")
-  return sectionIds;
+  return {sectionIds,names};
 }

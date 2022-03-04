@@ -248,7 +248,7 @@ async function getSectionBilgileri(
   setCookie: string,
   courseCode: string
 ): Promise<Section[]> {
-  const sectionIds = getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString);
+  const {sectionIds,names} = getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString);
   let res: Section[] = [];
   for (let i = 0; i < sectionIds.length; i++) {
     let sectionId = sectionIds[i];
@@ -295,7 +295,7 @@ async function getSectionBilgileri(
     let criterias: Criteria[] = homeController.getCriterias(doc);
 
     let section: Section = {
-      instructor: '', //TODO
+      instructor: names[i], //TODO
       sectionNumber: sectionId, 
       criteria: criterias,
     };
