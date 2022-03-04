@@ -16,6 +16,7 @@ import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
 import { p,locations, removeNonNumbers } from '@/utils/p';
+import { getSectionIdsAndInstructorsFromHtmlString } from '@/controller/home';
 
 const router = Router();
 
@@ -247,14 +248,9 @@ async function getSectionBilgileri(
   setCookie: string,
   courseCode: string
 ): Promise<Section[]> {
-  let submitSectionTextLocations = locations("submit_section",sectionsHtmlString)
-  const sectionLen = submitSectionTextLocations.length;
-  const sectionIdsStrings = submitSectionTextLocations.map(location => sectionsHtmlString.substring(location-15,location-5));
-  console.log(sectionIdsStrings);
-  const sectionIds = sectionIdsStrings.map(str=>parseInt(removeNonNumbers(str)));
-  console.log('sectionLen', sectionLen);
+  const sectionIds = getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString);
   let res: Section[] = [];
-  for (let i = 0; i < sectionLen; i++) {
+  for (let i = 0; i < sectionIds.length; i++) {
     let sectionId = sectionIds[i];
     let htmlResponse = await fetch(
       'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
@@ -300,7 +296,7 @@ async function getSectionBilgileri(
 
     let section: Section = {
       instructor: '', //TODO
-      sectionNumber: sectionId, //TODO
+      sectionNumber: sectionId, 
       criteria: criterias,
     };
     res.push(section);
@@ -308,6 +304,7 @@ async function getSectionBilgileri(
 
   return res;
 }
+
 
 async function getPrerequisite(
   derslerDoc: Document,

@@ -71,7 +71,8 @@ export function readFunc() {
   // virgulle ayrilmis tum satir
   // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TR/TD/FONT/TD/FONT/text()', doc).toString());
 
-  let str = fs.readFileSync('temp/5720484.1.html').toString();
+  let str = fs.readFileSync('temp/5720484.html').toString();
+  getSectionIdsAndInstructorsFromHtmlString(str);
   let doc = new DOMParser({
     locator: {},
     errorHandler: {
@@ -144,7 +145,7 @@ export function getGivenDeptFromDoc(kacinci: number,document:Document){ //DONE
   return xpath.select(xpathString, document).toString().replace(/[^A-Z]/g,"");
 }
 
-export function getCriteriasOfIthRow(kacinci:number,doc: Document){ //TODO
+export function getCriteriasOfIthRow(kacinci:number,doc: Document){ //DONE
   let res: string[] = []
   let xpaths = getCriteriaXpathsOtherThanName(kacinci,doc)
   for (let i = 0; i < xpaths.length; i++) {
@@ -176,7 +177,7 @@ export function kacCriteraVar(doc:Document): number{//DONE
   return res;
 }
 
-export function getCriterias(doc: Document): Criteria[] {//TODO
+export function getCriterias(doc: Document): Criteria[] {//DONE
   let numberOfCriterias = kacCriteraVar(doc);
   let res:Criteria[]= [];
   for (let i = 0; i < numberOfCriterias; i++) {
@@ -197,4 +198,22 @@ export function getCriterias(doc: Document): Criteria[] {//TODO
   }
 
   return res;
+}
+export function getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString: string) {
+  let submitSectionTextLocations = locations("submit_section", sectionsHtmlString);
+  const sectionLen = submitSectionTextLocations.length;
+  const sectionIdsStrings = submitSectionTextLocations.map(location => sectionsHtmlString.substring(location - 15, location - 5));
+  console.log(sectionIdsStrings);
+  const sectionIds = sectionIdsStrings.map(str => parseInt(removeNonNumbers(str)));
+  console.log('sectionLen', sectionLen);
+  let instrunctorNameStartLoc = submitSectionTextLocations.map(location=>sectionsHtmlString.slice(location).indexOf("FACE=ARIAL")+10+location)
+  console.log(instrunctorNameStartLoc);
+  console.log(submitSectionTextLocations)
+  console.log(sectionsHtmlString.slice(instrunctorNameStartLoc[0]-100));
+  p("********************")
+  let nameEnd = instrunctorNameStartLoc.map(location=>sectionsHtmlString.slice(location).indexOf("</FONT>"))
+  let names = nameEnd.map((location,i)=>sectionsHtmlString.substring(instrunctorNameStartLoc[i],location))
+  console.log(names)
+  console.log("ANAN ZAA")
+  return sectionIds;
 }
