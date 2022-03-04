@@ -24,6 +24,10 @@ router.get('/read',homeController.getIlkGiris);
 homeController.readFunc()
 router.get('/temp', async (req, res) => {
   const result = { deneme: 123 };
+  await GetAllDepartmentsCourses_Main();
+  res.json(result);
+});
+export async function GetAllDepartmentsCourses_Main(){
   let allDeptsNum: number[] = JSON.parse(
     fs.readFileSync('helperfiles/important/all-depts.json').toString(),
   );
@@ -124,8 +128,7 @@ router.get('/temp', async (req, res) => {
   }
   writeResult(main);
 
-  res.json(result);
-});
+}
 export default router;
 function writeResult(main: Main) {
   let filename = `results_${new Date().toJSON().replace(/:/g, '-')}.json`;
