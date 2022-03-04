@@ -296,7 +296,7 @@ async function getSectionBilgileri(
       },
     }).parseFromString(html_Text);
     
-    let criterias: Criteria[] = getCriterias(doc);
+    let criterias: Criteria[] = homeController.getCriterias(doc);
 
     let section: Section = {
       instructor: '', //TODO
@@ -399,59 +399,6 @@ async function getPrerequisite(
       Position: xpath.select(positionX, doc).toString(),
     };
     res.push(prerequisite);
-  }
-  return res;
-}
-function getCriterias(doc: Document): Criteria[] {
-  //DONE
-  let criteriasBolumuX = '//*[@id="single_content"]/form/TABLE[3]/TR';
-  // /html/body/div/div/div/form/TABLE[6]/TR/TD/FONT/B/TR/TD
-  let kacCriteria = xpath.select(criteriasBolumuX, doc).length - 1;
-  throw new Error();
-  let res: Criteria[] = [];
-  //*[@id="single_content"]/form/table[3]/tbody/tr[2]/td[1]/font
-
-  for (let i = 0; i < kacCriteria; i++) {
-    let givenDeptX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[1]/FONT/text()`;
-    let startCharX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[2]/FONT/text()`;
-    let endCharX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[3]/FONT/text()`;
-    let minCumGpaX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[4]/FONT/text()`;
-    let maxCumGpaX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[5]/FONT/text()`;
-    let minYearX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[6]/FONT/text()`;
-    let maxYearX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[7]/FONT/text()`;
-    let startGradeX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[8]/FONT/text()`;
-    let endGradeX = `//*[@id="single_content"]/form/TABLE[3]/TR[${
-      i + 2
-    }]/TD[9]/FONT/text()`;
-
-    let criteria: Criteria = {
-      givenDept: xpath.select(givenDeptX, doc).toString(),
-      startChar: xpath.select(startCharX, doc).toString(),
-      endChar: xpath.select(endCharX, doc).toString(),
-      minCumGpa: parseFloat(xpath.select(minCumGpaX, doc).toString()),
-      maxCumGpa: parseFloat(xpath.select(maxCumGpaX, doc).toString()),
-      minYear: parseInt(xpath.select(minYearX, doc).toString()),
-      maxYear: parseInt(xpath.select(maxYearX, doc).toString()),
-      startGrade: xpath.select(startGradeX, doc).toString(),
-      endGrade: xpath.select(endGradeX, doc).toString(),
-    };
-    res.push(criteria);
   }
   return res;
 }
