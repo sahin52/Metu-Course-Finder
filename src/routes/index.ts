@@ -22,7 +22,7 @@ const router = Router();
 
 router.get('/', homeController.getAppInfo);
 router.get('/read',homeController.getIlkGiris);
-homeController.readFunc()
+// homeController.readFunc()
 router.get('/temp', async (req, res) => {
   const result = { deneme: 123 };
   await GetAllDepartmentsCourses_Main();
@@ -138,7 +138,7 @@ function writeResult(main: Main) {
     JSON.stringify(main, null, 4),
   );
 }
-function w(deptnum: number, text: any) {
+function w(deptnum: number| string, text: any) {
   let dir = 'temp';
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
@@ -162,7 +162,7 @@ async function getDersler(
 
     let courseInfo = await getCourseInfo(i, derslerDoc, courseCode, setCookie);
     let prerequisite: Prerequisite[] = await getPrerequisite(
-      derslerDoc,
+      setCookie,
       courseCode,
     );
     let ders: Ders = {
@@ -307,7 +307,7 @@ async function getSectionBilgileri(
 
 
 async function getPrerequisite(
-  derslerDoc: Document,
+  setCookie: string,
   courseCode: string,
 ): Promise<Prerequisite[]> {
   let response = await fetch(
@@ -329,7 +329,7 @@ async function getPrerequisite(
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
         cookie:
-          '_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; phpSess_e7f8a2b66340bd43b00edc2a215826d5=Q8av7kEJYNJlpXlfhdwMWRIBR3XN2Tt5yBYuc89ZZ6yLTmSW74Gy5aozMO9yBWDgiraAThfED6KCyZyt7jyfMuBAqyBHWoXm2w4goIV0bI7vUs8gNbr41biLRWKczyWp',
+          `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; ${setCookie}`,
         Referer:
           'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -339,63 +339,6 @@ async function getPrerequisite(
     },
   );
   let textHtml = await response.text();
-  if (textHtml.includes('There is no prerequisite defined for this course')) {
-    return [];
-  }
-  let doc = new DOMParser({
-    locator: {},
-    errorHandler: {
-      warning: function (w) {},
-      error: function (e) {},
-      fatalError: function (e) {
-        console.error(e);
-      },
-    },
-  }).parseFromString(textHtml);
-
-  let uzunluk =
-    xpath.select(`//*[@id="single_content"]/form/TABLE[4]/TR`, doc).length - 1;
-  let res: Prerequisite[] = [];
-  for (let i = 0; i < uzunluk; i++) {
-    let programCodeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[1]/FONT/text()`;
-    let deptVersionX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[2]/FONT/text()`;
-    let courseCodeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[3]/FONT/text()`;
-    let nameX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[4]/FONT/text()`;
-    let creditX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[5]/FONT/text()`;
-    let setNoX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[6]/FONT/text()`;
-    let minGradeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[7]/FONT/text()`;
-    let typeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[8]/FONT/text()`;
-    let positionX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
-      i + 2
-    }]/TD[9]/FONT/text()`;
-    let prerequisite: Prerequisite = {
-      ProgramCode: parseInt(xpath.select(programCodeX, doc).toString()),
-      DeptVersion: parseInt(xpath.select(deptVersionX, doc).toString()),
-      CourseCode: parseInt(xpath.select(courseCodeX, doc).toString()),
-      Name: xpath.select(nameX, doc).toString(),
-      Credit: xpath.select(creditX, doc).toString(),
-      SetNo: parseInt(xpath.select(setNoX, doc).toString()),
-      MinGrade: xpath.select(minGradeX, doc).toString(),
-      Type: xpath.select(typeX, doc).toString(),
-      Position: xpath.select(positionX, doc).toString(),
-    };
-    res.push(prerequisite);
-  }
-  return res;
+  w(`${courseCode}.p`,textHtml);
+  return homeController.getPrerequisitesFromString(textHtml);
 }

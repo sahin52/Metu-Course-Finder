@@ -38,39 +38,8 @@ export const getIlkGiris = (req: Request, res: Response)=>{
 }
 
 export function readFunc() {
-  const startChar_1 = '//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[1]/FONT/text()'
-  const endChar_1 =   '//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[2]/FONT/text()'
-  
-  /// ilk satır                                                                                    |   
-  //   dept -> console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/text()', doc).toString());
 
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[1]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[2]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[3]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[4]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[5]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[6]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[7]/FONT/text()', doc).toString());
-  // end grade-> console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[8]/FONT/text()', doc).toString());
-  
-
-  // ikinci satir
-  // dept-> 
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[1]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[2]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[3]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[4]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[5]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[6]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[7]/FONT/text()', doc).toString());
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[8]/FONT/text()', doc).toString());
-  
-  // ucuncu satir                                                                        |         ---------   |              
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TR/TD/FONT/text()', doc).toString());
-  // virgulle ayrilmis tum satir
-  // console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TR/TD/FONT/TD/FONT/text()', doc).toString());
-
+ 
   let str = fs.readFileSync('temp/5720484.html').toString();
   getSectionIdsAndInstructorsFromHtmlString(str);
   let doc = new DOMParser({
@@ -210,4 +179,69 @@ export function getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString: st
   let nameEnd = instrunctorNameStartLoc.map(location=>sectionsHtmlString.slice(location).indexOf("</FONT>")+location)
   let names = nameEnd.map((location,i)=>sectionsHtmlString.substring(instrunctorNameStartLoc[i],location))
   return {sectionIds,names};
+}
+
+
+export function getPrerequisitesFromString(textHtml:string){
+  
+  if (textHtml.includes('There is no prerequisite defined for this course')) {
+    return [];
+  }
+  
+  let doc = new DOMParser({
+    locator: {},
+    errorHandler: {
+      warning: function (w) {},
+      error: function (e) {},
+      fatalError: function (e) {
+        console.error(e);
+      },
+    },
+  }).parseFromString(textHtml);
+
+  let uzunluk =
+    xpath.select(`//*[@id="single_content"]/form/TABLE[4]/TR`, doc).length - 1;
+  let res: Prerequisite[] = [];
+  for (let i = 0; i < uzunluk; i++) {
+    let programCodeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[1]/FONT/text()`;
+    let deptVersionX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[2]/FONT/text()`;
+    let courseCodeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[3]/FONT/text()`;
+    let nameX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[4]/FONT/text()`;
+    let creditX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[5]/FONT/text()`;
+    let setNoX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[6]/FONT/text()`;
+    let minGradeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[7]/FONT/text()`;
+    let typeX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[8]/FONT/text()`;
+    let positionX = `//*[@id="single_content"]/form/TABLE[4]/TR[${
+      i + 2
+    }]/TD[9]/FONT/text()`;
+    let prerequisite: Prerequisite = {
+      ProgramCode: parseInt(xpath.select(programCodeX, doc).toString()),
+      DeptVersion: parseInt(xpath.select(deptVersionX, doc).toString()),
+      CourseCode: parseInt(xpath.select(courseCodeX, doc).toString()),
+      Name: xpath.select(nameX, doc).toString(),
+      Credit: xpath.select(creditX, doc).toString(),
+      SetNo: parseInt(xpath.select(setNoX, doc).toString()),
+      MinGrade: xpath.select(minGradeX, doc).toString(),
+      Type: xpath.select(typeX, doc).toString(),
+      Position: xpath.select(positionX, doc).toString(),
+    };
+    res.push(prerequisite);
+  }
+  return res;
 }
