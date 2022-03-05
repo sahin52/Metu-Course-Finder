@@ -126,7 +126,7 @@ export async function GetAllDepartmentsCourses_Main(){
     }
     
 
-    if (i > 1) break; // DEBUG
+    
   }
   writeResult(main);
 
