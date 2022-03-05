@@ -67,6 +67,7 @@ export async function GetAllDepartmentsCourses_Main(){
     );
     let headers = f.headers;
     let deptHtmlRes = await f.text();
+    w(deptNum, deptHtmlRes);
     let setCookiFromHeader = headers.get('Set-Cookie');
     let setCooki = setCookiFromHeader!.slice(0, setCookiFromHeader!.length - 8);
     if (
@@ -123,7 +124,7 @@ export async function GetAllDepartmentsCourses_Main(){
     if (main.bolumler.length % 2 == 0) {
       writeResult(main);
     }
-    w(deptNum, deptHtmlRes);
+    
 
     if (i > 1) break; // DEBUG
   }
