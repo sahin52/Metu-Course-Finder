@@ -68,8 +68,7 @@ export async function GetAllDepartmentsCourses_Main(){
     let headers = f.headers;
     let deptHtmlRes = await f.text();
     w(deptNum, deptHtmlRes);
-    let setCookiFromHeader = headers.get('Set-Cookie');
-    let setCooki = setCookiFromHeader!.slice(0, setCookiFromHeader!.length - 8);
+
     if (
       deptHtmlRes.includes(
         'Information about the department could not be found.',
@@ -86,8 +85,11 @@ export async function GetAllDepartmentsCourses_Main(){
       main.bolumler.push(bolum);
       continue;
     }
+    let setCookiFromHeader = headers.get('Set-Cookie');
+    let setCooki = setCookiFromHeader!.slice(0, setCookiFromHeader!.length - 8);
+    
     //else
-    else {
+    
       let doc = new DOMParser({
         locator: {},
         errorHandler: {
@@ -120,7 +122,7 @@ export async function GetAllDepartmentsCourses_Main(){
 
       //
       main.bolumler.push(bolum);
-    }
+    
     if (main.bolumler.length % 2 == 0) {
       writeResult(main);
     }
