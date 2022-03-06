@@ -141,79 +141,91 @@ export async function GetAllDepartmentsCourses_Main(){
   writeResult(main);
 
 }
-
-export function readFunc() {
-
+type CoursesInfo = {
+  department: string;
+  courseCode: number;
+  departmentShort: string;
+  courseName: string;
+  credit: string;
+  sections: any;
+}
+export function tempApiTrials(){
+  let courses: CoursesInfo[] = []
  
-  let str = fs.readFileSync('temp/5720484.html').toString();
-  getSectionIdsAndInstructorsFromHtmlString(str);
-  let doc = new DOMParser({
-    locator: {},
-    errorHandler: {
-      warning: function (w) { },
-      error: function (e) { },
-      fatalError: function (e) {
-        console.error(e);
-      },
-    },
-  }).parseFromString(str);
-  p("#######################################3")
-   p("ilk satır")
-    p("dept -> ")
-    console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/text()', doc).toString());
+  let str = fs.readFileSync('data/all-lesson-details.json').toString();
+  let json: Main = JSON.parse(str);
+  let wantKibris = false;
+  let wantOdtu = true;
+  json.bolumler.filter(i=>(i.isKibris && wantKibris)||(!i.isKibris && wantOdtu))
+  .filter(i=>i.totalCourses>0)
+  .filter(i=>i.isInfoFound===true)
+  .map(i=> i.dersler.map(ders => {
+    {
+      let a: CoursesInfo ={
+        department: i.name,
+        courseCode: 0,
+        departmentShort: '',
+        courseName: '',
+        credit: '',
+        sections: undefined
+      } 
+    }
 
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[1]/FONT/text()', doc).toString());//1
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[2]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[3]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[4]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[5]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[6]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[7]/FONT/text()', doc).toString());
-  p("end grade-> ")
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TD[8]/FONT/text()', doc).toString());
-  p("<<<<////ilk satir>>>>")
+  }))
+}
+export function MainFiltering(input: any){
+  // departman Acik mi, Ders Acmis mi, 
+  // GetAllCoursesAndTheirPrerequisites And Their Sections
+  // cache'te varsa cache'ten çek yoksa
+  // bunu cache'e kaydet
+  // isKibris
+  // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar
+  ////////// SetNo'ya ve ders alımına göre filtrele
+  ////////// ProgramCode ve DeptVersion hepsinde aynı
+  ////////// verilen CourseCode alınmış mı, alındıysa min grade okey mi
+  ////////// position kapalı acik ders ? 
+  //
+  //
 
-  p("<<<ikinci satir>>>")
-  p("dept-> ")
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[1]/FONT/text()', doc).toString());//1
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[2]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[3]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[4]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[5]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[6]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[7]/FONT/text()', doc).toString());
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TD[8]/FONT/text()', doc).toString());
-  
-  p("ucuncu satir                                                                        |         ---------   |              ")
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TR/TD/FONT/text()', doc).toString());
-  // virgulle ayrilmis tum satir
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TR/TD/FONT/TD/FONT/text()', doc).toString());
-  p("dorduncu satir")
-  console.log(xpath.select('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/TR/TD/FONT/TR/TD/FONT/TR/TD/FONT/text()', doc).toString());
-  p("dorduncu satır - 2 tahmini:")
-  p(getCriteriaXpathsOtherThanName(4,doc))
-
-  // console.log(xpath.select(getCriteriaXpathsOtherThanName(4,doc), doc).toString());
-  console.log("Number Of Criterias:")
-  console.log(kacCriteraVar(doc));
-  console.log("getCriterias: ")
-  console.log(getCriterias(doc));
-
-  console.log("getNameFromDoc(0,doc)")
-  console.log(getGivenDeptFromDoc(0,doc));
-  p("getCriteriaXpathsOtherThanName")
-  p(getCriteriaXpathsOtherThanName(0,doc))
-  p("getXpathForCriteriaName")
-  p(getXpathForCriteriaName(0))
-  p("getCriteriasOfIthRow")
-  p(getCriteriasOfIthRow(0,doc))
-  p()
-  p()
-  p("-------------------")
-  p("")
 
 }
+export function readFunc() {
+  let result = new Set<string>();
+  let startChars = new Set<string>();
+  let endChars = new Set<string>();
+  let positions = new Set<string>();
+  let str = fs.readFileSync('data/all-lesson-details.json').toString();
+  let json: Main = JSON.parse(str);
+  let courseCodes = new Set<number>();
+  json.bolumler.filter(i=>i.isInfoFound && i.totalCourses>0)
+      .forEach(i=>i.dersler.forEach(ders=>{
+        ders.courseInfo.sectionlar.forEach(sections=>{
+          sections.criteria.forEach(criter=>{
+            result.add(criter.startGrade)
+            result.add(criter.endGrade);
+            startChars.add(criter.startGrade);
+            endChars.add(criter.endGrade);
+          })
+        });
+        ders.prerequisite.forEach(pre=>{
+          positions.add(pre.Position);
+          if(pre.Position==="Closed Course / Kapal? Ders")
+            courseCodes.add(pre.CourseCode)
+        })
+      }))
+      p("--------------------1")
+
+      console.log(result);
+      p("--------------------2")
+      console.log(startChars);
+      p("--------------------3")
+      console.log(endChars);
+      p("--------------------4")
+      p(positions)
+      p("--------------------5")
+    }
+    
+
 export function getGivenDeptFromDoc(kacinci: number,document:Document){ //DONE
   let xpathString = getXpathForCriteriaName(kacinci);
   return xpath.select(xpathString, document).toString().replace(/[^A-Z]/g,"");
@@ -265,8 +277,8 @@ export function getCriterias(doc: Document): Criteria[] {//DONE
       maxCumGpa: parseFloat(crits[3]),
       minYear: parseInt(crits[4]),
       maxYear: parseInt(crits[5]),
-      startGrade: crits[6],
-      endGrade: crits[7]
+      startGrade: crits[6] as any,
+      endGrade: crits[7] as any
     };
     res.push(criteria);
   }
@@ -344,7 +356,7 @@ export function getPrerequisitesFromString(textHtml:string){
       SetNo: parseInt(xpath.select(setNoX, doc).toString()),
       MinGrade: xpath.select(minGradeX, doc).toString(),
       Type: xpath.select(typeX, doc).toString(),
-      Position: xpath.select(positionX, doc).toString(),
+      Position: xpath.select(positionX, doc).toString() as any,
     };
     res.push(prerequisite);
   }

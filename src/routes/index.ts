@@ -22,11 +22,14 @@ const router = Router();
 
 router.get('/', homeController.getAppInfo);
 router.get('/read',homeController.getIlkGiris);
-// homeController.readFunc()
-router.get('/temp', async (req, res) => {
+homeController.readFunc()
+router.get('/update-database', async (req, res) => {
   const result = { deneme: 123 };
   await homeController.GetAllDepartmentsCourses_Main();
   res.json(result);
 });
+router.get('/get-aligible-courses',async (req,res)=>{
+  let input = req.query;
+})
 
 export default router;

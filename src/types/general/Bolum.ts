@@ -23,7 +23,7 @@ export interface Main {
     SetNo: number;
     MinGrade: string;
     Type: string;
-    Position: string;
+    Position:  'Offered Course / A??k Ders '| 'Closed Course / Kapal? Ders' ;
   }
   export interface CourseInfo {
     department: string;
@@ -35,7 +35,7 @@ export interface Main {
   export interface Section {
     instructor: string;
     sectionNumber: number;
-    criteria: Criteria[] | undefined;
+    criteria: Criteria[];
   }
   export interface Criteria {
     givenDept: string;
@@ -45,7 +45,27 @@ export interface Main {
     maxCumGpa: number;
     minYear: number;
     maxYear: number;
-    startGrade: string //"Hic almayanlar alabilir"|"Herkes alabilir";
-    endGrade: string // "Hic almayanlar alabilir"|"Herkes alabilir";
+    startGrade: startEndGrades //"Hic almayanlar alabilir"|"Herkes alabilir";
+    endGrade: startEndGrades // "Hic almayanlar alabilir"|"Herkes alabilir";
   }
-  
+
+export type startEndGrades=  'Hic almayanlar veya Basarisizlar (FD ve alti)'|
+'Kaldi'|
+'CC'|
+'CB'|
+'DC'|
+'FD'|
+'FF'|
+'NA'|
+'Hic almayanlar alabilir'|
+'Consent of dept'|
+'Herkes alabilir'|
+'Hic almayanlar veya DD ve alti'|
+'Hic almayanlar veya CC ve alti'|
+'U'|
+'DD'|
+'Gecti'|
+'BB'|
+'AA'|
+'BA'|
+'Hic almayanlar veya BB ve alti'

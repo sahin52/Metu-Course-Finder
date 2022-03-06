@@ -1,0 +1,3 @@
+# SetNo
+Prerequisiteler kısmında bazı dersleri almak için birden fazla set olabiliyor, mesela fizik almak için kimya veya biyolojiden birisini almak gerektiğinde kimyanın SetNo 1 biyolojinin 2 oluyor.  
+Ya da FINANCIAL MACROECONOMICS (Finansal Makroekonomi ) dersini alabilmek için (INTRODUCTION TO ECONOMICS II ve PRINCIPLES OF FINANCE ) veya (PRINCIPLES OF MACROECONOMICS ve PRINCIPLES OF FINANCE) veya ( FINANCIAL MANAGEMENT ve PRINCIPLES OF ECONOMICS II ) almak gerekiyorsa, bu parantez icindekilerin SetNoları aynı, veya'lanan ders gruplarının SetNoları farklı oluyor
