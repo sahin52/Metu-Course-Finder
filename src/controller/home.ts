@@ -14,9 +14,11 @@ import {
   Prerequisite,
   Section,
 } from '@/types/general/Bolum';
+import { CacheSection } from '@/types/cache-types/types';
 import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
+import cache from 'memory-cache';
 import { p, locations, removeNonNumbers } from '@/utils/p';
 
 /**
@@ -30,7 +32,8 @@ export const getAppInfo = (req: Request, res: Response) => {
 
   res.json(result);
 };
-
+const cacheKey = 'veri';
+const allLessonsDataPath = 'data/all-lesson-details.json';
 export const getIlkGiris = (req: Request, res: Response) => {
   const result = { asd: 1 };
   readFunc();
@@ -171,44 +174,99 @@ export function tempApiTrials() {
       }),
     );
 }
+const groupBy = function (xs: any, key: string) {
+  return xs.reduce(function (rv: any, x: any) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+export function GetFromCache() {
+  // Try Get From Cache
+  var veri: CacheSection[] = cache.get(cacheKey);
+  if (veri === null) {
+    p("veri null")
+    let json: Main = JSON.parse(fs.readFileSync(allLessonsDataPath).toString());
+    let filteredBolums = json.bolumler.filter(
+      (i) =>
+        i.totalCourses > 0 && i.isInfoFound === true && i.dersler.length > 0,
+    );
+    let sections: CacheSection[] = [];
+    filteredBolums.forEach((bolum) => {
+      bolum.dersler.forEach((course) => {
+        course.courseInfo.sectionlar.forEach((section) => {
+          sections.push({
+            prereqisites: groupBy(course.prerequisite, 'SetNo'),
+            bolumCode: bolum.code,
+            bolumName: bolum.name,
+            courseCode: course.courseInfo.courseCode,
+            courseName: course.courseInfo.courseName,
+            credit: course.courseInfo.credit,
+            creditAsFloat: parseFloat(course.courseInfo.credit.substring(0,4)),
+            department: course.courseInfo.department,
+            isKibris: bolum.isKibris,
+            criterias: section.criteria,
+            sectionNumber: section.sectionNumber,
+          });
+        });
+      });
+    });
+    fs.writeFileSync("temp/cache.json",JSON.stringify(sections));
+    cache.put(cacheKey,sections);
+    console.log(cache.get(cacheKey));
+    p("-3-33-3--3-3--33")
+    p("veri null")
+    return sections;
+    //// departman Acik mi, Ders Acmis mi,
+    //// veriyi sadece kursa çevir: GetAllCoursesAndTheirPrerequisites And Their Sections
+    //// bunu cache'ye kaydet
+  }
+  p("veri not null")
+  return veri;
+}
 export function MainFiltering(input: any) {
-  // departman Acik mi, Ders Acmis mi,
-  // GetAllCoursesAndTheirPrerequisites And Their Sections
-  // cache'te varsa cache'ten çek yoksa
-  // bunu cache'e kaydet
+  let sections =  GetFromCache();
   // isKibris
-  // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar
+  // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar:
   ////////// SetNo'ya ve ders alımına göre filtrele
   ////////// ProgramCode ve DeptVersion hepsinde aynı
   ////////// verilen CourseCode alınmış mı, alındıysa min grade okey mi
-  ////////// position kapalı acik ders ?
+  ////////// position kapalı acik ders ? Siktir et bi ise yaramiyor
   //
-  //
+  // criteria'lari uymayanlari cikar:
+  ////////// GivenDept Bizim dept değilse
+  ////////// Soyisim StartChar ve EndChar arasında değilse //TODO dahil mi
+  ////////// minCumGpa maxCumGpa arasında olmayan bi cumGpa'imiz varsa// TODO dahilmi
+  ////////// minYear maxYear arasında olmayan bi year'ımız varsa // TODO dahilmi
+  ////////// startGrade ve endGrade arasında olmayan bir gradeimiz varsa
+  ////////// CIKAR
 }
 export function readFunc() {
   let result = new Set<string>();
   let startChars = new Set<string>();
   let endChars = new Set<string>();
   let positions = new Set<string>();
-  let str = fs.readFileSync('data/all-lesson-details.json').toString();
+  let str = fs.readFileSync(allLessonsDataPath).toString();
   let json: Main = JSON.parse(str);
   let courseCodes = new Set<number>();
   json.bolumler
     .filter((i) => i.isInfoFound && i.totalCourses > 0)
     .forEach((i) =>
       i.dersler.forEach((ders) => {
-        ders.courseInfo.sectionlar.forEach((sections) => {
-          sections.criteria.forEach((criter) => {
-            result.add(criter.startGrade);
-            result.add(criter.endGrade);
-            startChars.add(criter.startGrade);
-            endChars.add(criter.endGrade);
-          });
-        });
         ders.prerequisite.forEach((pre) => {
-          positions.add(pre.Position);
           if (pre.Position === 'Closed Course / Kapal? Ders')
             courseCodes.add(pre.CourseCode);
+        });
+      }),
+    );
+  json.bolumler
+    .filter((i) => i.isInfoFound && i.totalCourses > 0)
+    .forEach((i) =>
+      i.dersler.forEach((ders) => {
+        ders.courseInfo.sectionlar.forEach((sections) => {
+          sections.criteria.forEach((criter) => {});
+        });
+        ders.prerequisite.forEach((pre) => {
+          if (courseCodes.has(pre.CourseCode)) p(pre.Position);
         });
       }),
     );
