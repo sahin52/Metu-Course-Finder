@@ -17,7 +17,7 @@ import {
 import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
-import { p,locations, removeNonNumbers } from '@/utils/p';
+import { p, locations, removeNonNumbers } from '@/utils/p';
 
 /**
  * Gets the API information.
@@ -31,12 +31,12 @@ export const getAppInfo = (req: Request, res: Response) => {
   res.json(result);
 };
 
-export const getIlkGiris = (req: Request, res: Response)=>{
-  const result = {asd:1}
+export const getIlkGiris = (req: Request, res: Response) => {
+  const result = { asd: 1 };
   readFunc();
   res.json(result);
-}
-export async function GetAllDepartmentsCourses_Main(){
+};
+export async function GetAllDepartmentsCourses_Main() {
   let allDeptsNum: number[] = JSON.parse(
     fs.readFileSync('helperfiles/important/all-depts.json').toString(),
   );
@@ -95,51 +95,47 @@ export async function GetAllDepartmentsCourses_Main(){
     }
     let setCookiFromHeader = headers.get('Set-Cookie');
     let setCooki = setCookiFromHeader!.slice(0, setCookiFromHeader!.length - 8);
-    
+
     //else
-    
-      let doc = new DOMParser({
-        locator: {},
-        errorHandler: {
-          warning: function (w) {},
-          error: function (e) {},
-          fatalError: function (e) {
-            console.error(e);
-          },
+
+    let doc = new DOMParser({
+      locator: {},
+      errorHandler: {
+        warning: function (w) {},
+        error: function (e) {},
+        fatalError: function (e) {
+          console.error(e);
         },
-      }).parseFromString(deptHtmlRes);
+      },
+    }).parseFromString(deptHtmlRes);
 
-      let totalCourses =
-        xpath.select('//*[@id="single_content"]/form/TABLE[4]/TR', doc).length -
-        1;
-      let name = xpath
-        .select(
-          '//*[@id="single_content"]/form/TABLE[1]/TR/TD[1]/FONT/text()',
-          doc,
-        )
-        .toString();
-      console.log(totalCourses);
-      let bolum: Bolum = {
-        isInfoFound: true,
-        dersler: await getDersler(doc, totalCourses, deptNum, setCooki),
-        name: name,
-        code: deptNum,
-        totalCourses: totalCourses,
-        isKibris: name.includes('Kuzey K'),
-      };
+    let totalCourses =
+      xpath.select('//*[@id="single_content"]/form/TABLE[4]/TR', doc).length -
+      1;
+    let name = xpath
+      .select(
+        '//*[@id="single_content"]/form/TABLE[1]/TR/TD[1]/FONT/text()',
+        doc,
+      )
+      .toString();
+    console.log(totalCourses);
+    let bolum: Bolum = {
+      isInfoFound: true,
+      dersler: await getDersler(doc, totalCourses, deptNum, setCooki),
+      name: name,
+      code: deptNum,
+      totalCourses: totalCourses,
+      isKibris: name.includes('Kuzey K'),
+    };
 
-      //
-      main.bolumler.push(bolum);
-    
+    //
+    main.bolumler.push(bolum);
+
     if (main.bolumler.length % 2 == 0) {
       writeResult(main);
     }
-    
-
-    
   }
   writeResult(main);
-
 }
 type CoursesInfo = {
   department: string;
@@ -148,33 +144,35 @@ type CoursesInfo = {
   courseName: string;
   credit: string;
   sections: any;
-}
-export function tempApiTrials(){
-  let courses: CoursesInfo[] = []
- 
+};
+export function tempApiTrials() {
+  let courses: CoursesInfo[] = [];
+
   let str = fs.readFileSync('data/all-lesson-details.json').toString();
   let json: Main = JSON.parse(str);
   let wantKibris = false;
   let wantOdtu = true;
-  json.bolumler.filter(i=>(i.isKibris && wantKibris)||(!i.isKibris && wantOdtu))
-  .filter(i=>i.totalCourses>0)
-  .filter(i=>i.isInfoFound===true)
-  .map(i=> i.dersler.map(ders => {
-    {
-      let a: CoursesInfo ={
-        department: i.name,
-        courseCode: 0,
-        departmentShort: '',
-        courseName: '',
-        credit: '',
-        sections: undefined
-      } 
-    }
-
-  }))
+  json.bolumler
+    .filter((i) => (i.isKibris && wantKibris) || (!i.isKibris && wantOdtu))
+    .filter((i) => i.totalCourses > 0)
+    .filter((i) => i.isInfoFound === true)
+    .map((i) =>
+      i.dersler.map((ders) => {
+        {
+          let a: CoursesInfo = {
+            department: i.name,
+            courseCode: 0,
+            departmentShort: '',
+            courseName: '',
+            credit: '',
+            sections: undefined,
+          };
+        }
+      }),
+    );
 }
-export function MainFiltering(input: any){
-  // departman Acik mi, Ders Acmis mi, 
+export function MainFiltering(input: any) {
+  // departman Acik mi, Ders Acmis mi,
   // GetAllCoursesAndTheirPrerequisites And Their Sections
   // cache'te varsa cache'ten çek yoksa
   // bunu cache'e kaydet
@@ -183,11 +181,9 @@ export function MainFiltering(input: any){
   ////////// SetNo'ya ve ders alımına göre filtrele
   ////////// ProgramCode ve DeptVersion hepsinde aynı
   ////////// verilen CourseCode alınmış mı, alındıysa min grade okey mi
-  ////////// position kapalı acik ders ? 
+  ////////// position kapalı acik ders ?
   //
   //
-
-
 }
 export function readFunc() {
   let result = new Set<string>();
@@ -197,65 +193,82 @@ export function readFunc() {
   let str = fs.readFileSync('data/all-lesson-details.json').toString();
   let json: Main = JSON.parse(str);
   let courseCodes = new Set<number>();
-  json.bolumler.filter(i=>i.isInfoFound && i.totalCourses>0)
-      .forEach(i=>i.dersler.forEach(ders=>{
-        ders.courseInfo.sectionlar.forEach(sections=>{
-          sections.criteria.forEach(criter=>{
-            result.add(criter.startGrade)
+  json.bolumler
+    .filter((i) => i.isInfoFound && i.totalCourses > 0)
+    .forEach((i) =>
+      i.dersler.forEach((ders) => {
+        ders.courseInfo.sectionlar.forEach((sections) => {
+          sections.criteria.forEach((criter) => {
+            result.add(criter.startGrade);
             result.add(criter.endGrade);
             startChars.add(criter.startGrade);
             endChars.add(criter.endGrade);
-          })
+          });
         });
-        ders.prerequisite.forEach(pre=>{
+        ders.prerequisite.forEach((pre) => {
           positions.add(pre.Position);
-          if(pre.Position==="Closed Course / Kapal? Ders")
-            courseCodes.add(pre.CourseCode)
-        })
-      }))
-      p("--------------------1")
+          if (pre.Position === 'Closed Course / Kapal? Ders')
+            courseCodes.add(pre.CourseCode);
+        });
+      }),
+    );
+  p('--------------------1');
 
-      console.log(result);
-      p("--------------------2")
-      console.log(startChars);
-      p("--------------------3")
-      console.log(endChars);
-      p("--------------------4")
-      p(positions)
-      p("--------------------5")
-    }
-    
-
-export function getGivenDeptFromDoc(kacinci: number,document:Document){ //DONE
-  let xpathString = getXpathForCriteriaName(kacinci);
-  return xpath.select(xpathString, document).toString().replace(/[^A-Z]/g,"");
+  console.log(result);
+  p('--------------------2');
+  console.log(startChars);
+  p('--------------------3');
+  console.log(endChars);
+  p('--------------------4');
+  p(positions);
+  p('--------------------5');
 }
 
-export function getCriteriasOfIthRow(kacinci:number,doc: Document){ //DONE
-  let res: string[] = []
-  let xpaths = getCriteriaXpathsOtherThanName(kacinci,doc)
+export function getGivenDeptFromDoc(kacinci: number, document: Document) {
+  //DONE
+  let xpathString = getXpathForCriteriaName(kacinci);
+  return xpath
+    .select(xpathString, document)
+    .toString()
+    .replace(/[^A-Z]/g, '');
+}
+
+export function getCriteriasOfIthRow(kacinci: number, doc: Document) {
+  //DONE
+  let res: string[] = [];
+  let xpaths = getCriteriaXpathsOtherThanName(kacinci, doc);
   for (let i = 0; i < xpaths.length; i++) {
     const path = xpaths[i];
-    res.push(xpath.select(path,doc).toString());
+    res.push(xpath.select(path, doc).toString());
   }
   return res;
-  
 }
-export function getXpathForCriteriaName(i: number){//DONE
-  return '//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/'+'TR/TD/FONT/'.repeat(i)+'text()'
+export function getXpathForCriteriaName(i: number) {
+  //DONE
+  return (
+    '//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/' +
+    'TR/TD/FONT/'.repeat(i) +
+    'text()'
+  );
 }
-export function getCriteriaXpathsOtherThanName(i:number,doc:Document){//DONE test
-  let res: string[] =[]
+export function getCriteriaXpathsOtherThanName(i: number, doc: Document) {
+  //DONE test
+  let res: string[] = [];
   for (let j = 1; j <= 8; j++) {
-    res.push('//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/'+'TR/TD/FONT/'.repeat(i)+`TD[${j}]/FONT/text()`)
+    res.push(
+      '//*[@id="single_content"]/form/TABLE[3]/TR/TD/FONT/B/TR/TD/FONT/' +
+        'TR/TD/FONT/'.repeat(i) +
+        `TD[${j}]/FONT/text()`,
+    );
   }
   return res;
 }
-export function kacCriteraVar(doc:Document): number{//DONE
+export function kacCriteraVar(doc: Document): number {
+  //DONE
   let res = 0;
-  while(true){
-    let name = getGivenDeptFromDoc(res,doc);
-    if(name===undefined || name ===null || name===''){
+  while (true) {
+    let name = getGivenDeptFromDoc(res, doc);
+    if (name === undefined || name === null || name === '') {
       break;
     }
     res++;
@@ -263,12 +276,13 @@ export function kacCriteraVar(doc:Document): number{//DONE
   return res;
 }
 
-export function getCriterias(doc: Document): Criteria[] {//DONE
+export function getCriterias(doc: Document): Criteria[] {
+  //DONE
   let numberOfCriterias = kacCriteraVar(doc);
-  let res:Criteria[]= [];
+  let res: Criteria[] = [];
   for (let i = 0; i < numberOfCriterias; i++) {
-    let dept = getGivenDeptFromDoc(i,doc);
-    let crits =  getCriteriasOfIthRow(i,doc);
+    let dept = getGivenDeptFromDoc(i, doc);
+    let crits = getCriteriasOfIthRow(i, doc);
     let criteria: Criteria = {
       givenDept: dept,
       startChar: crits[0],
@@ -278,33 +292,48 @@ export function getCriterias(doc: Document): Criteria[] {//DONE
       minYear: parseInt(crits[4]),
       maxYear: parseInt(crits[5]),
       startGrade: crits[6] as any,
-      endGrade: crits[7] as any
+      endGrade: crits[7] as any,
     };
     res.push(criteria);
   }
 
   return res;
 }
-export function getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString: string) {
-  let submitSectionTextLocations = locations("submit_section", sectionsHtmlString);
+export function getSectionIdsAndInstructorsFromHtmlString(
+  sectionsHtmlString: string,
+) {
+  let submitSectionTextLocations = locations(
+    'submit_section',
+    sectionsHtmlString,
+  );
   const sectionLen = submitSectionTextLocations.length;
-  const sectionIdsStrings = submitSectionTextLocations.map(location => sectionsHtmlString.substring(location - 15, location - 5));
+  const sectionIdsStrings = submitSectionTextLocations.map((location) =>
+    sectionsHtmlString.substring(location - 15, location - 5),
+  );
   console.log(sectionIdsStrings);
-  const sectionIds = sectionIdsStrings.map(str => parseInt(removeNonNumbers(str)));
+  const sectionIds = sectionIdsStrings.map((str) =>
+    parseInt(removeNonNumbers(str)),
+  );
   console.log('sectionLen', sectionLen);
-  let instrunctorNameStartLoc = submitSectionTextLocations.map(location=>sectionsHtmlString.slice(location).indexOf("FACE=ARIAL")+11+location)
-  let nameEnd = instrunctorNameStartLoc.map(location=>sectionsHtmlString.slice(location).indexOf("</FONT>")+location)
-  let names = nameEnd.map((location,i)=>sectionsHtmlString.substring(instrunctorNameStartLoc[i],location))
-  return {sectionIds,names};
+  let instrunctorNameStartLoc = submitSectionTextLocations.map(
+    (location) =>
+      sectionsHtmlString.slice(location).indexOf('FACE=ARIAL') + 11 + location,
+  );
+  let nameEnd = instrunctorNameStartLoc.map(
+    (location) =>
+      sectionsHtmlString.slice(location).indexOf('</FONT>') + location,
+  );
+  let names = nameEnd.map((location, i) =>
+    sectionsHtmlString.substring(instrunctorNameStartLoc[i], location),
+  );
+  return { sectionIds, names };
 }
 
-
-export function getPrerequisitesFromString(textHtml:string){
-  
+export function getPrerequisitesFromString(textHtml: string) {
   if (textHtml.includes('There is no prerequisite defined for this course')) {
     return [];
   }
-  
+
   let doc = new DOMParser({
     locator: {},
     errorHandler: {
@@ -370,7 +399,7 @@ function writeResult(main: Main) {
     JSON.stringify(main, null, 4),
   );
 }
-function w(deptnum: number| string, text: any) {
+function w(deptnum: number | string, text: any) {
   let dir = 'temp';
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
@@ -458,19 +487,71 @@ async function getCourseInfo(
       },
     },
   }).parseFromString(sectionsHtmlString);
-  console.log("ewkk")
-  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]',sectionsDoc).toString())
-  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[1]',sectionsDoc).toString())
-  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[1]',sectionsDoc).toString())
-  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[2]',sectionsDoc).toString())
-  console.log( xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]/FONT[1]/text()',sectionsDoc).toString())
-  p("done");
+  console.log('ewkk');
+  console.log(
+    xpath
+      .select(
+        '//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]',
+        sectionsDoc,
+      )
+      .toString(),
+  );
+  console.log(
+    xpath
+      .select('//*[@id="single_content"]/form/TABLE[1]/TR[1]', sectionsDoc)
+      .toString(),
+  );
+  console.log(
+    xpath
+      .select('//*[@id="single_content"]/form/TABLE[1]', sectionsDoc)
+      .toString(),
+  );
+  console.log(
+    xpath
+      .select('//*[@id="single_content"]/form/TABLE[2]', sectionsDoc)
+      .toString(),
+  );
+  console.log(
+    xpath
+      .select(
+        '//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]/FONT[1]/text()',
+        sectionsDoc,
+      )
+      .toString(),
+  );
+  p('done');
   let courseInfo: CourseInfo = {
-    department: xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]/FONT[1]/text()',sectionsDoc).toString(),
-    courseCode: parseInt(xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[2]/TD[1]/FONT/text()',sectionsDoc).toString()), 
-    courseName: xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[2]/TD[2]/FONT/text()',sectionsDoc).toString(),
-    credit: xpath.select('//*[@id="single_content"]/form/TABLE[1]/TR[3]/TD[1]/FONT/text()',sectionsDoc).toString(),
-    sectionlar: await getSectionBilgileri(sectionsHtmlString, setCookie,courseCode),
+    department: xpath
+      .select(
+        '//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]/FONT[1]/text()',
+        sectionsDoc,
+      )
+      .toString(),
+    courseCode: parseInt(
+      xpath
+        .select(
+          '//*[@id="single_content"]/form/TABLE[1]/TR[2]/TD[1]/FONT/text()',
+          sectionsDoc,
+        )
+        .toString(),
+    ),
+    courseName: xpath
+      .select(
+        '//*[@id="single_content"]/form/TABLE[1]/TR[2]/TD[2]/FONT/text()',
+        sectionsDoc,
+      )
+      .toString(),
+    credit: xpath
+      .select(
+        '//*[@id="single_content"]/form/TABLE[1]/TR[3]/TD[1]/FONT/text()',
+        sectionsDoc,
+      )
+      .toString(),
+    sectionlar: await getSectionBilgileri(
+      sectionsHtmlString,
+      setCookie,
+      courseCode,
+    ),
   };
   return courseInfo;
 }
@@ -478,9 +559,10 @@ async function getCourseInfo(
 async function getSectionBilgileri(
   sectionsHtmlString: string,
   setCookie: string,
-  courseCode: string
+  courseCode: string,
 ): Promise<Section[]> {
-  const {sectionIds,names} = getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString);
+  const { sectionIds, names } =
+    getSectionIdsAndInstructorsFromHtmlString(sectionsHtmlString);
   let res: Section[] = [];
   for (let i = 0; i < sectionIds.length; i++) {
     let sectionId = sectionIds[i];
@@ -511,8 +593,8 @@ async function getSectionBilgileri(
         method: 'POST',
       },
     );
-    let html_Text = await htmlResponse.text()
-    fs.writeFileSync(`temp/${courseCode}.${sectionId}.html`,html_Text)
+    let html_Text = await htmlResponse.text();
+    fs.writeFileSync(`temp/${courseCode}.${sectionId}.html`, html_Text);
     let doc = new DOMParser({
       locator: {},
       errorHandler: {
@@ -523,12 +605,12 @@ async function getSectionBilgileri(
         },
       },
     }).parseFromString(html_Text);
-    
+
     let criterias: Criteria[] = getCriterias(doc);
 
     let section: Section = {
       instructor: names[i], //TODO
-      sectionNumber: sectionId, 
+      sectionNumber: sectionId,
       criteria: criterias,
     };
     res.push(section);
@@ -536,7 +618,6 @@ async function getSectionBilgileri(
 
   return res;
 }
-
 
 async function getPrerequisite(
   setCookie: string,
@@ -560,8 +641,7 @@ async function getPrerequisite(
         'sec-fetch-site': 'same-origin',
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
-        cookie:
-          `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; ${setCookie}`,
+        cookie: `_ga=GA1.3.313145970.1639841661; _APP_LOCALE=EN; _gid=GA1.3.1929801388.1646276825; ${setCookie}`,
         Referer:
           'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -571,6 +651,6 @@ async function getPrerequisite(
     },
   );
   let textHtml = await response.text();
-  w(`${courseCode}.p`,textHtml);
+  w(`${courseCode}.p`, textHtml);
   return getPrerequisitesFromString(textHtml);
 }

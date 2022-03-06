@@ -15,21 +15,21 @@ import {
 import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
-import { p,locations, removeNonNumbers } from '@/utils/p';
+import { p, locations, removeNonNumbers } from '@/utils/p';
 import { getSectionIdsAndInstructorsFromHtmlString } from '@/controller/home';
 
 const router = Router();
 
 router.get('/', homeController.getAppInfo);
-router.get('/read',homeController.getIlkGiris);
-homeController.readFunc()
+router.get('/read', homeController.getIlkGiris);
+homeController.readFunc();
 router.get('/update-database', async (req, res) => {
   const result = { deneme: 123 };
   await homeController.GetAllDepartmentsCourses_Main();
   res.json(result);
 });
-router.get('/get-aligible-courses',async (req,res)=>{
+router.get('/get-aligible-courses', async (req, res) => {
   let input = req.query;
-})
+});
 
 export default router;
