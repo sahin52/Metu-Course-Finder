@@ -1,0 +1,2809 @@
+{
+    "bolumler": [
+        {
+            "isInfoFound": true,
+            "dersler": [
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720172,
+                        "courseName": "INTRODUCTION TO AIRCRAFT PERFORMANCE (HAVA ARAÇLARI PERFORMANSINA GİRİŞ )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KUTAY ALİ TÜRKER",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AB",
+                                        "endChar": "KA",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AB",
+                                        "endChar": "KA",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "YÜ",
+                                        "endChar": "YÜ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "BA",
+                                        "endChar": "BA",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "CC",
+                                        "endGrade": "CC"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "BÖ",
+                                        "endChar": "BÖ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "CB",
+                                        "endGrade": "CB"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "ON",
+                                        "endChar": "ON",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "DC",
+                                        "endGrade": "DC"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "KUTAY ALİ TÜRKER",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AL",
+                                        "endChar": "AL",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "Gİ",
+                                        "endChar": "Gİ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YÜ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YÜ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720200,
+                        "courseName": "SUMMER PRACTICE I (YAZ STAJI I )",
+                        "credit": "0.00(0.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "BAŞKAN PERÇİN ÖZGE",
+                                "sectionNumber": 8,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "GÜLOĞLU GÖRKEM EĞEMEN",
+                                "sectionNumber": 9,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "TEKİNALP OZAN",
+                                "sectionNumber": 10,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YAMAN YAVUZ",
+                                "sectionNumber": 11,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "EYİ SİNAN",
+                                "sectionNumber": 12,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÖZYÖRÜK YUSUF",
+                                "sectionNumber": 13,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÖZGEN SERKAN",
+                                "sectionNumber": 15,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KAYRAN ALTAN",
+                                "sectionNumber": 16,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ŞAHİN MELİN",
+                                "sectionNumber": 17,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YAVRUCUK İLKAY",
+                                "sectionNumber": 18,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "UZOL OĞUZ",
+                                "sectionNumber": 19,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KURTULUŞ DİLEK FUNDA",
+                                "sectionNumber": 21,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KUTAY ALİ TÜRKER",
+                                "sectionNumber": 22,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÇÖKER DEMİRKAN",
+                                "sectionNumber": 23,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "GÜRSES ERCAN",
+                                "sectionNumber": 24,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YALÇINKAYA TUNCAY",
+                                "sectionNumber": 25,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KAHVECİ HARİKA SENEM",
+                                "sectionNumber": 26,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "SEZER UZOL NİLAY",
+                                "sectionNumber": 27,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "PERÇİN MUSTAFA",
+                                "sectionNumber": 28,
+                                "criteria": []
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720231,
+                        "courseName": "THERMODYNAMICS (TERMODİNAMİK )",
+                        "credit": "4.00(4.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KAHVECİ HARİKA SENEM",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 2,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 2,
+                                        "maxYear": 4,
+                                        "startGrade": "FD",
+                                        "endGrade": "FF"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720244,
+                        "courseName": "FLUID MECHANICS (AKIŞKANLAR MEKANİĞİ )",
+                        "credit": "4.00(4.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "UZOL OĞUZ",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "ER",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "ER",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "PERÇİN MUSTAFA",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AL",
+                                        "endChar": "AL",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EV",
+                                        "endChar": "ON",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EV",
+                                        "endChar": "ON",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "BAŞKAN PERÇİN ÖZGE",
+                                "sectionNumber": 3,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "BÜ",
+                                        "endChar": "BÜ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "OS",
+                                        "endChar": "ZE",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "OS",
+                                        "endChar": "ZE",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720261,
+                        "courseName": "STATICS (STATİK )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "ŞAHİN MELİN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 2,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "FF",
+                                        "endGrade": "FF"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "NA",
+                                        "endGrade": "NA"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "FD",
+                                        "endGrade": "FD"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720262,
+                        "courseName": "DYNAMICS (DİNAMİK )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "YAMAN YAVUZ",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "ER",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "ER",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "YAMAN YAVUZ",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EV",
+                                        "endChar": "ON",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EV",
+                                        "endChar": "ON",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "GÜLOĞLU GÖRKEM EĞEMEN",
+                                "sectionNumber": 3,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "OS",
+                                        "endChar": "ZE",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "OS",
+                                        "endChar": "ZE",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720264,
+                        "courseName": "MECHANICS OF MATERIALS (MALZEME MEKANİĞİ )",
+                        "credit": "4.00(4.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "ÇÖKER DEMİRKAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "ER",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "ER",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ŞAHİN MELİN",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EV",
+                                        "endChar": "ON",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EV",
+                                        "endChar": "ON",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "YALÇINKAYA TUNCAY",
+                                "sectionNumber": 3,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "OS",
+                                        "endChar": "ZE",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "OS",
+                                        "endChar": "ZE",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720300,
+                        "courseName": "SUMMER PRACTICE II (YAZ STAJI II )",
+                        "credit": "0.00(0.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "BAŞKAN PERÇİN ÖZGE",
+                                "sectionNumber": 8,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "GÜLOĞLU GÖRKEM EĞEMEN",
+                                "sectionNumber": 9,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "TEKİNALP OZAN",
+                                "sectionNumber": 10,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YAMAN YAVUZ",
+                                "sectionNumber": 11,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "EYİ SİNAN",
+                                "sectionNumber": 12,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÖZYÖRÜK YUSUF",
+                                "sectionNumber": 13,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÖZGEN SERKAN",
+                                "sectionNumber": 15,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KAYRAN ALTAN",
+                                "sectionNumber": 16,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ŞAHİN MELİN",
+                                "sectionNumber": 17,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YAVRUCUK İLKAY",
+                                "sectionNumber": 18,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "UZOL OĞUZ",
+                                "sectionNumber": 19,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KURTULUŞ DİLEK FUNDA",
+                                "sectionNumber": 21,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KUTAY ALİ TÜRKER",
+                                "sectionNumber": 22,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÇÖKER DEMİRKAN",
+                                "sectionNumber": 23,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "GÜRSES ERCAN",
+                                "sectionNumber": 24,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YALÇINKAYA TUNCAY",
+                                "sectionNumber": 25,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KAHVECİ HARİKA SENEM",
+                                "sectionNumber": 26,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "SEZER UZOL NİLAY",
+                                "sectionNumber": 27,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "PERÇİN MUSTAFA",
+                                "sectionNumber": 28,
+                                "criteria": []
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720305,
+                        "courseName": "NUMERICAL METHODS (SAYISAL YÖNTEMLER )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "TUNCER İSMAİL HAKKI",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "FD",
+                                        "endGrade": "FF"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar alabilir",
+                                        "endGrade": "Hic almayanlar alabilir"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "NA",
+                                        "endGrade": "NA"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720334,
+                        "courseName": "PROPULSION SYSTEMS I (İTKİ SİSTEMLERİ I )",
+                        "credit": "4.00(3.00,2.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "ÖZYÖRÜK YUSUF",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "İN",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "İN",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ÖZYÖRÜK YUSUF",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YÜ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YU",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720342,
+                        "courseName": "AERODYNAMICS II (AERODİNAMİK II )",
+                        "credit": "4.00(3.00,2.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "SEZER UZOL NİLAY",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "İN",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "İN",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "PERÇİN MUSTAFA",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YÜ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YU",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720362,
+                        "courseName": "AEROSPACE STRUCTURES (HAVACILIK VE UZAY YAPILARI )",
+                        "credit": "4.00(4.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KAYRAN ALTAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EK",
+                                        "endChar": "EK",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "DE",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "DE",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "GÜLOĞLU GÖRKEM EĞEMEN",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EL",
+                                        "endChar": "Lİ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "EL",
+                                        "endChar": "Lİ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "DO",
+                                        "endChar": "DO",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "GÜRSES ERCAN",
+                                "sectionNumber": 3,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "MA",
+                                        "endChar": "YU",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "MA",
+                                        "endChar": "YU",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720372,
+                        "courseName": "FLIGHT MECHANICS (UÇUŞ MEKANİĞİ )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "SÖKEN HALİL ERSİN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "ÜL",
+                                        "endChar": "ÜL",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "İN",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AK",
+                                        "endChar": "İN",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "TEKİNALP OZAN",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YÜ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YU",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 0,
+                                        "maxYear": 95,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720384,
+                        "courseName": "AUTOMATIC CONTROL SYSTEMS I (OTOMATİK KONTROL SİSTEMLERİ I )",
+                        "credit": "3.00(3.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "TEKİNALP OZAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720400,
+                        "courseName": "SUMMER PRACTICE III (YAZ STAJI III )",
+                        "credit": "0.00(0.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "BAŞKAN PERÇİN ÖZGE",
+                                "sectionNumber": 8,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "GÜLOĞLU GÖRKEM EĞEMEN",
+                                "sectionNumber": 9,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "TEKİNALP OZAN",
+                                "sectionNumber": 10,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YAMAN YAVUZ",
+                                "sectionNumber": 11,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "EYİ SİNAN",
+                                "sectionNumber": 12,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÖZYÖRÜK YUSUF",
+                                "sectionNumber": 13,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÖZGEN SERKAN",
+                                "sectionNumber": 15,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KAYRAN ALTAN",
+                                "sectionNumber": 16,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ŞAHİN MELİN",
+                                "sectionNumber": 17,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YAVRUCUK İLKAY",
+                                "sectionNumber": 18,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "UZOL OĞUZ",
+                                "sectionNumber": 19,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KURTULUŞ DİLEK FUNDA",
+                                "sectionNumber": 21,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KUTAY ALİ TÜRKER",
+                                "sectionNumber": 22,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "ÇÖKER DEMİRKAN",
+                                "sectionNumber": 23,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "GÜRSES ERCAN",
+                                "sectionNumber": 24,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "YALÇINKAYA TUNCAY",
+                                "sectionNumber": 25,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KAHVECİ HARİKA SENEM",
+                                "sectionNumber": 26,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "SEZER UZOL NİLAY",
+                                "sectionNumber": 27,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "PERÇİN MUSTAFA",
+                                "sectionNumber": 28,
+                                "criteria": []
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720404,
+                        "courseName": "AEROSPACE ENGINEERING PROJECT II ( )",
+                        "credit": "3.00(1.00,4.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "TEKİNALP OZAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "PERÇİN MUSTAFA",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "SÖKEN HALİL ERSİN",
+                                "sectionNumber": 3,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720438,
+                        "courseName": "AIRCRAFT ENGINE DESIGN (HAVA ARACI MOTOR TASARIMI )",
+                        "credit": "3.00(2.00,2.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KAHVECİ HARİKA SENEM",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "ALL",
+                                        "startChar": "AA",
+                                        "endChar": "AA",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 0,
+                                        "minYear": 0,
+                                        "maxYear": 0,
+                                        "startGrade": "Consent of dept",
+                                        "endGrade": "Consent of dept"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720443,
+                        "courseName": "COMPUTATIONAL AERODYNAMICS (HESAPLAMALI AERODİNAMİK )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "TUNCER İSMAİL HAKKI",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "ALL",
+                                        "startChar": "AA",
+                                        "endChar": "AA",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 0,
+                                        "minYear": 0,
+                                        "maxYear": 0,
+                                        "startGrade": "Consent of dept",
+                                        "endGrade": "Consent of dept"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720445,
+                        "courseName": "HYPERSONIC FLOW (HİPERSONİK AKIŞ )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "EYİ SİNAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720446,
+                        "courseName": "INTR. TO HELICOPTER AERODYN. &amp; HEL. DES. (HELİKOPTER AERODİNAMİĞİ VE HELİKOPTER TASARIMINA GİRİŞ )",
+                        "credit": "3.00(2.00,2.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "SEZER UZOL NİLAY",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "ALL",
+                                        "startChar": "AA",
+                                        "endChar": "AA",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 0,
+                                        "minYear": 0,
+                                        "maxYear": 0,
+                                        "startGrade": "Consent of dept",
+                                        "endGrade": "Consent of dept"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720452,
+                        "courseName": "AERONAUTICAL ENG.DESIGN (HAVA ARAÇLARI TASARIMI )",
+                        "credit": "3.00(2.00,2.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "ÖZGEN SERKAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "ALL",
+                                        "startChar": "AA",
+                                        "endChar": "AA",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 0,
+                                        "minYear": 0,
+                                        "maxYear": 0,
+                                        "startGrade": "Consent of dept",
+                                        "endGrade": "Consent of dept"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "KURTULUŞ DİLEK FUNDA",
+                                "sectionNumber": 2,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YU",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "KA",
+                                        "endChar": "YU",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720462,
+                        "courseName": "DESIGN OF AEROSPACE STRUCTURES (HAVACILIK VE UZAY YAPILARI TASARIMI )",
+                        "credit": "3.00(2.00,2.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KAYRAN ALTAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 3,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720464,
+                        "courseName": "APPLICATION OF FINITE ELEMENT ANALYSIS IN AEROSPACE STRUCTURES (SONLU ELEMANLAR ANALİZİNİN HAVACILIK VE UZAY YAPILARINA UYGULANMASI )",
+                        "credit": "3.00(2.00,2.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "GÜRSES ERCAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                                        "endGrade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                                    },
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 4,
+                                        "maxYear": 4,
+                                        "startGrade": "Kaldi",
+                                        "endGrade": "Kaldi"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720484,
+                        "courseName": "INERTIAL NAVIGATION SYSTEMS (ATALETLİ SEYRÜSEFER SİSTEMLERİ )",
+                        "credit": "3.00(3.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "SÖKEN HALİL ERSİN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "ALL",
+                                        "startChar": "AA",
+                                        "endChar": "AA",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 0,
+                                        "minYear": 0,
+                                        "maxYear": 0,
+                                        "startGrade": "Consent of dept",
+                                        "endGrade": "Consent of dept"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720500,
+                        "courseName": "M.S. THESIS (YÜKSEK LİSANS TEZİ )",
+                        "credit": "0.00(0.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KANOĞLU UTKU",
+                                "sectionNumber": 6,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 62,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "AŞIK MEHMET ZÜLFÜ",
+                                "sectionNumber": 7,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "BAŞKAN PERÇİN ÖZGE",
+                                "sectionNumber": 8,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "GÜLOĞLU GÖRKEM EĞEMEN",
+                                "sectionNumber": 9,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "TEKİNALP OZAN",
+                                "sectionNumber": 10,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "YAMAN YAVUZ",
+                                "sectionNumber": 11,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "EYİ SİNAN",
+                                "sectionNumber": 12,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ÖZYÖRÜK YUSUF",
+                                "sectionNumber": 13,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "TUNCER İSMAİL HAKKI",
+                                "sectionNumber": 14,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ÖZGEN SERKAN",
+                                "sectionNumber": 15,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "KAYRAN ALTAN",
+                                "sectionNumber": 16,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ŞAHİN MELİN",
+                                "sectionNumber": 17,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "YAVRUCUK İLKAY",
+                                "sectionNumber": 18,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "UZOL OĞUZ",
+                                "sectionNumber": 19,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "SÖKEN HALİL ERSİN",
+                                "sectionNumber": 20,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KURTULUŞ DİLEK FUNDA",
+                                "sectionNumber": 21,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "KUTAY ALİ TÜRKER",
+                                "sectionNumber": 22,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ÇÖKER DEMİRKAN",
+                                "sectionNumber": 23,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "GÜRSES ERCAN",
+                                "sectionNumber": 24,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "YALÇINKAYA TUNCAY",
+                                "sectionNumber": 25,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "KAHVECİ HARİKA SENEM",
+                                "sectionNumber": 26,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "SEZER UZOL NİLAY",
+                                "sectionNumber": 27,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 62,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "PERÇİN MUSTAFA",
+                                "sectionNumber": 28,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 62,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720502,
+                        "courseName": "ADVANCED MATHEMATICS FOR ENGINEERS II (MÜHENDİSLER İÇİN İLERİ MATEMATİK II )",
+                        "credit": "3.00(3.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KARACA MEHMET",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720538,
+                        "courseName": "COMBUSTION IN ENGINES (MOTORLARDA YANMA )",
+                        "credit": "3.00(3.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KARACA MEHMET",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720540,
+                        "courseName": "TURBULENCE MODELING FOR ENGINEERING FLOWS (MÜHENDİSLİK AKIŞLARI İÇİN TÜRBÜLANS MODELLEMESİ )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "UZOL OĞUZ",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720541,
+                        "courseName": "ADVANCED COMPUTATIONAL FLUID DYNAMICS (İLERİ HESAPLAMALI AKIŞKANLAR MEKANİĞİ )",
+                        "credit": "3.00(3.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "EYİ SİNAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720542,
+                        "courseName": "TURBULENT BOUNDARY LAYERS (TÜRBÜLANSLI SINIR TABAKALARI )",
+                        "credit": "3.00(3.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "ÇIRAY CAHİT",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720549,
+                        "courseName": "LIN. STA. THE.AND LAM.TUR.BOUN.LAY.TRAN (DOĞRUSAL KARARLILIK TEORİSİ VE LAMİNER-TÜRBÜLANSLI SINIR TABAKALARI GEÇİŞİ )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "ÖZGEN SERKAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720551,
+                        "courseName": "INTRODUCTION TO SPACE SCIENCES (UZAY BİLİMLERİNE GİRİŞ )",
+                        "credit": "3.00(3.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KURTULUŞ DİLEK FUNDA",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720584,
+                        "courseName": "HELICOPTER DYNAMICS STABILITY AND CONTROL (HELİKOPTER DİNAMİĞİ, KARARLILIK VE KONTROL )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "YAVRUCUK İLKAY",
+                                "sectionNumber": 1,
+                                "criteria": []
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720590,
+                        "courseName": "GRADUATE SEMINAR (LİSANSÜSTÜ SEMİNERLERİ )",
+                        "credit": "0.00(0.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "STAFF",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 62,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720600,
+                        "courseName": "PH.D. THESIS (DOKTORA TEZİ )",
+                        "credit": "0.00(0.00,0.00,)",
+                        "sectionlar": [
+                            {
+                                "instructor": "KANOĞLU UTKU",
+                                "sectionNumber": 6,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "GÜLOĞLU GÖRKEM EĞEMEN",
+                                "sectionNumber": 9,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "TEKİNALP OZAN",
+                                "sectionNumber": 10,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "YAMAN YAVUZ",
+                                "sectionNumber": 11,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "EYİ SİNAN",
+                                "sectionNumber": 12,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ÖZYÖRÜK YUSUF",
+                                "sectionNumber": 13,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "TUNCER İSMAİL HAKKI",
+                                "sectionNumber": 14,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ÖZGEN SERKAN",
+                                "sectionNumber": 15,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "KAYRAN ALTAN",
+                                "sectionNumber": 16,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ŞAHİN MELİN",
+                                "sectionNumber": 17,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "YAVRUCUK İLKAY",
+                                "sectionNumber": 18,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "UZOL OĞUZ",
+                                "sectionNumber": 19,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "SÖKEN HALİL ERSİN",
+                                "sectionNumber": 20,
+                                "criteria": []
+                            },
+                            {
+                                "instructor": "KURTULUŞ DİLEK FUNDA",
+                                "sectionNumber": 21,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "KUTAY ALİ TÜRKER",
+                                "sectionNumber": 22,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "ÇÖKER DEMİRKAN",
+                                "sectionNumber": 23,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "GÜRSES ERCAN",
+                                "sectionNumber": 24,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "YALÇINKAYA TUNCAY",
+                                "sectionNumber": 25,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "KAHVECİ HARİKA SENEM",
+                                "sectionNumber": 26,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "SEZER UZOL NİLAY",
+                                "sectionNumber": 27,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            },
+                            {
+                                "instructor": "PERÇİN MUSTAFA",
+                                "sectionNumber": 28,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720690,
+                        "courseName": "PHD SEMINAR (DOKTORA SEMİNERLERİ )",
+                        "credit": "0.00(0.00,2.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "STAFF",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 72,
+                                        "maxYear": 83,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720718,
+                        "courseName": "FATIGUE AND FRACTURE OF AEROSPACE STRUCTURES (HAVACILIK VE UZAY YAPILARINDA YORULMA VE KIRILMA )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "ÇÖKER DEMİRKAN",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720725,
+                        "courseName": "MICROMECHANICS OF METALLIC MATERIALS (METAL MALZEMELERİN MİKROMEKANİĞİ )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "YALÇINKAYA TUNCAY",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720727,
+                        "courseName": "ADVANCED METHODS IN AEROSPACE ENGINEERING SYSTEM DESIGN (HAVACILIK VE UZAY SİSTEMLERİ TASARIMDA İLERİ YÖNTEMLER )",
+                        "credit": "3.00(2.00,2.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "YAVRUCUK İLKAY",
+                                "sectionNumber": 1,
+                                "criteria": []
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720729,
+                        "courseName": "ETHICAL BEHAVIOUR IN ENGINEERING (MÜHENDİSLİKTE ETİK DAVRANIŞ )",
+                        "credit": "0.00(0.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "ÇIRAY CAHİT",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 62,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                },
+                {
+                    "courseInfo": {
+                        "department": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+                        "courseCode": 5720734,
+                        "courseName": "ADVANCED HEAT AND MASS TRANSFER (İLERİ ISI VE KÜTLE TRANSFERİ )",
+                        "credit": "3.00(3.00,0.00,0.00)",
+                        "sectionlar": [
+                            {
+                                "instructor": "BAŞKAN PERÇİN ÖZGE",
+                                "sectionNumber": 1,
+                                "criteria": [
+                                    {
+                                        "givenDept": "AEE",
+                                        "startChar": "AA",
+                                        "endChar": "ZZ",
+                                        "minCumGpa": 0,
+                                        "maxCumGpa": 4,
+                                        "minYear": 61,
+                                        "maxYear": 95,
+                                        "startGrade": "Herkes alabilir",
+                                        "endGrade": "Herkes alabilir"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "prerequisite": []
+                }
+            ],
+            "name": "Aerospace Engineering/Havacılık ve Uzay Mühendisliği",
+            "code": 572,
+            "totalCourses": 41,
+            "isKibris": false
+        }
+    ]
+}
