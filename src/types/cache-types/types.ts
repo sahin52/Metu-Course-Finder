@@ -1,6 +1,6 @@
 import {Criteria, Prerequisite} from '@/types/general/Bolum'
 export type CacheSection = {
-    prereqisites: CachePrerequisite[],
+    prereqisites: CachePrerequisite,
     courseCode: number,
     courseName: string,
     credit: string,
@@ -14,5 +14,5 @@ export type CacheSection = {
 }
 
 export type CachePrerequisite = {
-    [key: string]: Prerequisite
+    [key: string]: Prerequisite[]
 }
