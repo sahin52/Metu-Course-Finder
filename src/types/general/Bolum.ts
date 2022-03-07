@@ -21,7 +21,7 @@ export interface Prerequisite {
   Name: string;
   Credit: string;
   SetNo: number;
-  MinGrade: string;
+  MinGrade: MinGrade;
   Type: string;
   Position: 'Offered Course / A??k Ders ' | 'Closed Course / Kapal? Ders';
 }
@@ -70,3 +70,5 @@ export type startEndGrades =
   | 'AA'
   | 'BA'
   | 'Hic almayanlar veya BB ve alti';
+
+  export type MinGrade =  'DD'| 'S'| 'CB'| 'CC'| 'BB'| 'FF'| 'FD'| 'U';

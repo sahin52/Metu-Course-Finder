@@ -22,7 +22,7 @@ const router = Router();
 
 router.get('/', homeController.getAppInfo);
 router.get('/read', homeController.getIlkGiris);
-homeController.readFunc();
+//homeController.tempApiTrials();
 router.get('/update-database', async (req, res) => {
   const result = { deneme: 123 };
   await homeController.GetAllDepartmentsCourses_Main();

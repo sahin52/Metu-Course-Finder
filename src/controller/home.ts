@@ -11,6 +11,7 @@ import {
   Criteria,
   Ders,
   Main,
+  MinGrade,
   Prerequisite,
   Section,
 } from '@/types/general/Bolum';
@@ -20,6 +21,8 @@ import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
 import cache from 'memory-cache';
 import { p, locations, removeNonNumbers } from '@/utils/p';
+import { MainFilterInputDto } from '@/types/request/main-filter';
+import { Grade } from '@/types/general/get-aligible-lessons-types';
 
 /**
  * Gets the API information.
@@ -140,41 +143,18 @@ export async function GetAllDepartmentsCourses_Main() {
   }
   writeResult(main);
 }
-type CoursesInfo = {
-  department: string;
-  courseCode: number;
-  departmentShort: string;
-  courseName: string;
-  credit: string;
-  sections: any;
-};
-export function tempApiTrials() {
-  let courses: CoursesInfo[] = [];
 
-  let str = fs.readFileSync('data/all-lesson-details.json').toString();
-  let json: Main = JSON.parse(str);
-  let wantKibris = false;
-  let wantOdtu = true;
-  json.bolumler
-    .filter((i) => (i.isKibris && wantKibris) || (!i.isKibris && wantOdtu))
-    .filter((i) => i.totalCourses > 0)
-    .filter((i) => i.isInfoFound === true)
-    .map((i) =>
-      i.dersler.map((ders) => {
-        {
-          let a: CoursesInfo = {
-            department: i.name,
-            courseCode: 0,
-            departmentShort: '',
-            courseName: '',
-            credit: '',
-            sections: undefined,
-          };
-        }
-      }),
-    );
+export function tempApiTrials() {
+  let data = GetFromCache();
+  let res = new Set();
+  data.forEach((row) =>
+    Object.entries(row.prereqisites).forEach(([key, value]) =>
+      value.forEach((pre) => res.add(pre.MinGrade)),
+    ),
+  );
+  console.log(res);
 }
-const groupBy = function (xs: any, key: string) {
+const groupBy = function (xs: any[], key: string) {
   return xs.reduce(function (rv: any, x: any) {
     (rv[x[key]] = rv[x[key]] || []).push(x);
     return rv;
@@ -184,7 +164,7 @@ export function GetFromCache() {
   // Try Get From Cache
   var veri: CacheSection[] = cache.get(cacheKey);
   if (veri === null) {
-    p("veri null")
+    p('veri null');
     let json: Main = JSON.parse(fs.readFileSync(allLessonsDataPath).toString());
     let filteredBolums = json.bolumler.filter(
       (i) =>
@@ -201,7 +181,7 @@ export function GetFromCache() {
             courseCode: course.courseInfo.courseCode,
             courseName: course.courseInfo.courseName,
             credit: course.courseInfo.credit,
-            creditAsFloat: parseFloat(course.courseInfo.credit.substring(0,4)),
+            creditAsFloat: parseFloat(course.courseInfo.credit.substring(0, 4)),
             department: course.courseInfo.department,
             isKibris: bolum.isKibris,
             criterias: section.criteria,
@@ -210,21 +190,37 @@ export function GetFromCache() {
         });
       });
     });
-    fs.writeFileSync("temp/cache.json",JSON.stringify(sections));
-    cache.put(cacheKey,sections);
-    console.log(cache.get(cacheKey));
-    p("-3-33-3--3-3--33")
-    p("veri null")
+    fs.writeFileSync('temp/cache.json', JSON.stringify(sections));
+    cache.put(cacheKey, sections);
     return sections;
     //// departman Acik mi, Ders Acmis mi,
     //// veriyi sadece kursa çevir: GetAllCoursesAndTheirPrerequisites And Their Sections
     //// bunu cache'ye kaydet
   }
-  p("veri not null")
+  p('veri not null');
   return veri;
 }
-export function MainFiltering(input: any) {
-  let sections =  GetFromCache();
+export function MainFiltering(input: MainFilterInputDto) {
+  let sections = GetFromCache();
+  let res = sections
+    .filter(
+      (section) =>
+        (input.wantsKibrisOdtu && section.isKibris) ||
+        (input.wantsNormalOdtu && !section.isKibris),
+    )
+    .filter(
+      (section) =>
+        Object.keys(section.prereqisites).length === 0 ||
+        Object.entries(section.prereqisites).some(([setNo, prerequisites], i) =>
+          prerequisites.every((prerequisite) =>
+            input.takenCourses.some(
+              (inputcourse) =>
+                inputcourse.courseCode === prerequisite.CourseCode &&
+                isGradeGreater(inputcourse.grade, prerequisite.MinGrade),
+            ),
+          ),
+        ),
+    );
   // isKibris
   // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar:
   ////////// SetNo'ya ve ders alımına göre filtrele
@@ -441,7 +437,7 @@ export function getPrerequisitesFromString(textHtml: string) {
       Name: xpath.select(nameX, doc).toString(),
       Credit: xpath.select(creditX, doc).toString(),
       SetNo: parseInt(xpath.select(setNoX, doc).toString()),
-      MinGrade: xpath.select(minGradeX, doc).toString(),
+      MinGrade: xpath.select(minGradeX, doc).toString() as any,
       Type: xpath.select(typeX, doc).toString(),
       Position: xpath.select(positionX, doc).toString() as any,
     };
@@ -711,4 +707,101 @@ async function getPrerequisite(
   let textHtml = await response.text();
   w(`${courseCode}.p`, textHtml);
   return getPrerequisitesFromString(textHtml);
+}
+
+function isGradeGreater(grade: Grade, minGrade: MinGrade): boolean {
+  if (grade === minGrade) return true;
+  if (grade === 'AA' || grade === 'BA' || grade === 'BB') {
+    switch (minGrade) {
+      case 'BB':
+      case 'CB':
+      case 'CC':
+      case 'DD':
+      case 'FD':
+      case 'S':
+      case 'U':
+        return true;
+    }
+  }
+  if (grade === 'CB') {
+    switch (minGrade) {
+      case 'BB':
+        return false;
+      case 'CB':
+      case 'CC':
+      case 'DD':
+      case 'FD':
+      case 'S':
+      case 'U':
+        return true;
+    }
+  }
+  if (grade === 'CC') {
+    switch (minGrade) {
+      case 'BB':
+      case 'CB':
+        return false;
+      case 'CC':
+      case 'DD':
+      case 'FD':
+      case 'S':
+      case 'U':
+        return true;
+    }
+  }
+  if (grade === 'DC' || grade === 'DD') {
+    switch (minGrade) {
+      case 'BB':
+      case 'CB':
+      case 'CC':
+        return false;
+      case 'DD':
+      case 'FD':
+      case 'S':
+      case 'U':
+        return true;
+    }
+  }
+  if (grade === 'FD') {
+    switch (minGrade) {
+      case 'BB':
+      case 'CB':
+      case 'CC':
+      case 'DD':
+        return false;
+      case 'FD':
+      case 'S':
+      case 'U':
+        return true;
+    }
+  }
+  if (grade === 'FF' || grade === 'NA') {
+    return false;
+  }
+  if (grade === 'S') {
+    switch (minGrade) {
+      case 'BB':
+      case 'CB':
+      case 'CC':
+      case 'DD':
+      case 'FD':
+      case 'S':
+      case 'U':
+        return true;
+    }
+  }
+  if (grade === 'U') {
+    switch (minGrade) {
+      case 'BB':
+      case 'CB':
+      case 'CC':
+      case 'DD':
+      case 'FD':
+      case 'U':
+        return true;
+      case 'S':
+        return false;
+    }
+  }
+  return false;
 }
