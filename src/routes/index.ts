@@ -17,12 +17,21 @@ import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
 import { p, locations, removeNonNumbers } from '@/utils/p';
 import { getSectionIdsAndInstructorsFromHtmlString } from '@/controller/home';
+import { MainFilterInputDto } from '@/types/request/main-filter';
 
 const router = Router();
 
 router.get('/', homeController.getAppInfo);
 router.get('/read', homeController.getIlkGiris);
-//homeController.tempApiTrials();
+let input: MainFilterInputDto = {
+  takenCourses: [],
+  wantsKibrisOdtu: false,
+  wantsNormalOdtu: true,
+  minWantedCredit: "3.00",
+  istenilenBolum: 571,
+  ogrencininBolumu: "CENG"
+}
+homeController.MainFiltering(input);
 router.get('/update-database', async (req, res) => {
   const result = { deneme: 123 };
   await homeController.GetAllDepartmentsCourses_Main();

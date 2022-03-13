@@ -4,6 +4,9 @@ export type MainFilterInputDto = {
     takenCourses: TakenCourseRequestDto[]
     wantsKibrisOdtu: boolean
     wantsNormalOdtu: boolean
+    minWantedCredit: string
+    istenilenBolum?: number
+    ogrencininBolumu: string
 }
 
 export type TakenCourseRequestDto={

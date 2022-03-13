@@ -160,7 +160,7 @@ const groupBy = function (xs: any[], key: string) {
     return rv;
   }, {});
 };
-export function GetFromCache() {
+export function GetFromCache(): CacheSection[] {
   // Try Get From Cache
   var veri: CacheSection[] = cache.get(cacheKey);
   if (veri === null) {
@@ -220,7 +220,11 @@ export function MainFiltering(input: MainFilterInputDto) {
             ),
           ),
         ),
-    );
+    )
+    .filter((section)=>section.credit.substring(0,3)>=input.minWantedCredit)
+    .filter((section)=>input.istenilenBolum !== undefined && section.bolumCode===input.istenilenBolum);
+    console.log(JSON.stringify(res,null,4));
+    console.log(res.length)
   // isKibris
   // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar:
   ////////// SetNo'ya ve ders alımına göre filtrele
