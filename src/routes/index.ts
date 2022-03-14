@@ -24,13 +24,13 @@ const router = Router();
 router.get('/', homeController.getAppInfo);
 router.get('/read', homeController.getIlkGiris);
 let input: MainFilterInputDto = {
-  takenCourses: [{ courseCode: 5710232, grade: 'CC' }],
+  takenCourses: [],
   wantsKibrisOdtu: false,
   wantsNormalOdtu: true,
-  minWantedCredit: '3.00',
-  ogrencininBolumu: 'CENG',
-  cumGpa: 3.0,
-  soyad: 'KA',
+  minWantedCredit: '2.00',
+  ogrencininBolumu: 'GENE',
+  cumGpa: 2.60,
+  soyad: 'AS',
   year: 3,
 };
 homeController.MainFiltering(input);
@@ -41,6 +41,9 @@ router.get('/update-database', async (req, res) => {
 });
 router.get('/get-aligible-courses', async (req, res) => {
   homeController.MainFiltering(input);
+});
+router.get('/g', async (req, res) => {
+  homeController.CrFilter();
 });
 
 export default router;

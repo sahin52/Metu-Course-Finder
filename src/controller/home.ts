@@ -204,6 +204,22 @@ export function GetFromCache(): CacheSection[] {
   p('veri not null');
   return veri;
 }
+export function CrFilter(){
+  let sections = GetFromCache();
+  let res: {[key:string]: string[]} = {}
+  sections.forEach(section=>{
+    section.criterias.forEach(criteria=>{
+      if(res[criteria.startGrade]===undefined){
+        res[criteria.startGrade] = [];
+      }
+      if(!res[criteria.startGrade].includes(criteria.endGrade))
+        res[criteria.startGrade].push(criteria.endGrade);
+    })
+  })
+  fs.writeFileSync('CrfilterSonuc2',JSON.stringify(res));
+  fs.writeFileSync('CrfilterSonuc',JSON.stringify(res,null,4));
+  console.log(res);
+}
 export function MainFiltering(input: MainFilterInputDto) {
   let sections = GetFromCache();
   let res = sections
@@ -264,6 +280,7 @@ export function MainFiltering(input: MainFilterInputDto) {
     });
   console.log(JSON.stringify(res, null, 4));
   console.log(res.length);
+  fs.writeFileSync("tempsonuc",JSON.stringify(res, null, 4));
   // isKibris
   // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar:
   ////////// SetNo'ya ve ders alımına göre filtrele
@@ -854,53 +871,122 @@ function getIfGradeOK(
   takenCourse: TakenCourseRequestDto,
 ) {
   // if(takenCourse===null || takenCourse===undefined) return false;
-  if (!isTakenCourseNull() && takenCourse.courseCode === 5710232) {
-    console.log('here');
+  if(isTakenCourseNull()){
+    if(startGrade==="Hic almayanlar veya Basarisizlar (FD ve alti)" 
+    || startGrade==="Hic almayanlar alabilir"
+    || startGrade==="Herkes alabilir"
+    || startGrade==="Hic almayanlar veya DD ve alti"
+    || startGrade==="Hic almayanlar veya CC ve alti"
+    || startGrade==="Hic almayanlar veya BB ve alti"
+    ){
+      return true;
+    }
+    return false;
   }
-
-  if (startGrade === 'Herkes alabilir') {
+  if(startGrade==="Hic almayanlar veya Basarisizlar (FD ve alti)"){
+    if(takenCourse.grade>="FD") return true;
+    return false;
+  }
+  if(startGrade==="Kaldi"){
+    if(takenCourse.grade>="FD"){
+      return true;
+    }
+    return false;
+  }
+  if(startGrade==="CC"){
+    if(endGrade==="CC"){
+      if(takenCourse.grade==="CC") return true;
+      return false;
+    }
+    if(endGrade==="NA"){
+      if(takenCourse.grade>="CC" && takenCourse.grade<="NA") return true;
+      return false;
+    }
+    if(endGrade==="FF"){
+      if(takenCourse.grade>="CC" && takenCourse.grade<="FF") return true;
+      return false;
+    }
     return true;
   }
-  if (startGrade === 'Hic almayanlar alabilir') {
-    if (isTakenCourseNull()) return true;
-    return false;
+  if(startGrade==="CB"){
+      if(endGrade==="CB"){
+        if(takenCourse.grade==="CB") return true;
+        return false;
+      }
+      return true;
   }
-  if (startGrade === 'Hic almayanlar veya DD ve alti') {
-    if (isTakenCourseNull()) return true;
-    if (takenCourse.grade >= 'DD') {
+  if(startGrade==="DC"){
+    if(takenCourse.grade>="DC" && takenCourse.grade<=endGrade) return true;
+      return false;
+  }
+  if(startGrade==="FD"){
+    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
+      return false;
+  }
+  if(startGrade==="FF"){
+    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
+      return false;
+  }
+  if(startGrade==="NA"){
+    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
+      return false;
+  }
+  if(startGrade==="Hic almayanlar alabilir"){
+    if(isTakenCourseNull()) return true;
+      return false;
+  }
+  if(startGrade==="Consent of dept" ||startGrade==="Herkes alabilir"){
+    return true;
+  }
+  if(startGrade==="Hic almayanlar veya DD ve alti"){
+    if(takenCourse.grade>="DD"){
+      return true
+    }
+    return false
+  }
+  if(startGrade==="Hic almayanlar veya CC ve alti"){
+    if(takenCourse.grade>="CC"){
       return true;
     }
     return false;
   }
-  if (startGrade === 'Hic almayanlar veya Basarisizlar (FD ve alti)') {
-    if (isTakenCourseNull()) return true;
-    if (takenCourse.grade >= 'FD') {
-      return true;
+  if(startGrade==="U"){
+    if(endGrade==="U") {
+      if(takenCourse.grade==="U") return true;
+      return false;
     }
+    if(endGrade==="NA"){
+      if(takenCourse.grade==="U" ||takenCourse.grade==="NA" ){
+        return true;
+      }
+      return false;
+    }
+    return true;
+  }
+  if(startGrade==="DD"){
+    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
+      return false;
+  }
+  if(startGrade==="Gecti"){
+    if(isTakenCourseNull()) return false;
+    return true;
+  }
+  if(startGrade==="BB"){
+    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
     return false;
   }
-  if (startGrade === 'Hic almayanlar veya BB ve alti') {
-    if (isTakenCourseNull()) return true;
-    if (takenCourse.grade >= 'BB') {
-      return true;
-    }
-    return false;
+  if(startGrade==="AA"){
+    return true;
   }
-  if (startGrade === 'Hic almayanlar veya CC ve alti') {
-    if (isTakenCourseNull()) return true;
-    if (takenCourse.grade >= 'CC') {
-      return true;
-    }
-    return false;
-  }
-  if (isTakenCourseNull()) return true;
-  if (startGrade.length === 2) {
-    if (takenCourse.grade < startGrade && takenCourse.grade > endGrade) {
-      return true;
-    }
-    return false;
-  }
-  // if(startGrade==='')
+ if(startGrade==="BA"){
+  if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
+  return false;
+ }
+ if(startGrade==="Hic almayanlar veya BB ve alti"){
+  if(takenCourse.grade>="BB")return true;
+  return false;
+ }
+
   return true;
 
   function isTakenCourseNull() {
