@@ -21,7 +21,7 @@
     "service:list": "pm2 list ecosystem.config.js",
     "service:delete": "pm2 delete ecosystem.config.js",
     "service:logs": "pm2 logs",
-    "prettify": "prettier --single-quote --write \"src/**/*.{ts,js,json}\""
+    "prettify": "prettier --single-quote --write \"src/**/*.{ts,js,json}\" --end-of-line \"crlf\""
   },
   "lint-staged": {
     "*.{ts,js}": [

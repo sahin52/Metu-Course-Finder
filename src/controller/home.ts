@@ -22,7 +22,10 @@ import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
 import cache from 'memory-cache';
 import { p, locations, removeNonNumbers } from '@/utils/p';
-import { MainFilterInputDto, TakenCourseRequestDto } from '@/types/request/main-filter';
+import {
+  MainFilterInputDto,
+  TakenCourseRequestDto,
+} from '@/types/request/main-filter';
 import { Grade } from '@/types/general/get-aligible-lessons-types';
 
 /**
@@ -212,14 +215,13 @@ export function MainFiltering(input: MainFilterInputDto) {
     .filter(
       (section) => section.credit.substring(0, 4) >= input.minWantedCredit,
     )
-    .filter(
-      (section) =>{
-        if(input.istenilenBolum=== undefined) return true;
-        return input.istenilenBolum !== undefined &&
-        section.bolumCode === input.istenilenBolum;
-      }
-        
-    )
+    .filter((section) => {
+      if (input.istenilenBolum === undefined) return true;
+      return (
+        input.istenilenBolum !== undefined &&
+        section.bolumCode === input.istenilenBolum
+      );
+    })
     .filter((section) => {
       let res =
         Object.keys(section.prereqisites).length === 0 ||
@@ -235,23 +237,31 @@ export function MainFiltering(input: MainFilterInputDto) {
           }),
         );
       return res;
-    }).filter((section)=>{
-      let res = true;
-      if(section.criterias.length===0) return true;
-      res = section.criterias.some((criteria)=>{
-        let res = ( criteria.givenDept ==='ALL' || criteria.givenDept===input.ogrencininBolumu )&& 
-        criteria.startChar<input.soyad &&
-        criteria.endChar>input.soyad &&
-        criteria.minCumGpa < input.cumGpa &&
-        criteria.maxCumGpa > input.cumGpa &&
-        criteria.minYear < input.year &&
-        criteria.maxYear > input.year &&
-        getIfGradeOK(criteria.startGrade, criteria.endGrade,input.takenCourses.filter(i=>i.courseCode===section.courseCode)[0])
-        return res;
-      })
-      return res;
     })
-    ;
+    .filter((section) => {
+      let res = true;
+      if (section.criterias.length === 0) return true;
+      res = section.criterias.some((criteria) => {
+        let res =
+          (criteria.givenDept === 'ALL' ||
+            criteria.givenDept === input.ogrencininBolumu) &&
+          criteria.startChar < input.soyad &&
+          criteria.endChar > input.soyad &&
+          criteria.minCumGpa < input.cumGpa &&
+          criteria.maxCumGpa > input.cumGpa &&
+          criteria.minYear < input.year &&
+          criteria.maxYear > input.year &&
+          getIfGradeOK(
+            criteria.startGrade,
+            criteria.endGrade,
+            input.takenCourses.filter(
+              (i) => i.courseCode === section.courseCode,
+            )[0],
+          );
+        return res;
+      });
+      return res;
+    });
   console.log(JSON.stringify(res, null, 4));
   console.log(res.length);
   // isKibris
@@ -838,45 +848,54 @@ function isGradeGreater(grade: Grade, minGrade: MinGrade): boolean {
   }
   return false;
 }
-function getIfGradeOK(startGrade: StartEndGrades, endGrade: StartEndGrades, takenCourse: TakenCourseRequestDto) {
-
+function getIfGradeOK(
+  startGrade: StartEndGrades,
+  endGrade: StartEndGrades,
+  takenCourse: TakenCourseRequestDto,
+) {
   // if(takenCourse===null || takenCourse===undefined) return false;
-  if(!isTakenCourseNull() && takenCourse.courseCode===5710232){
-    console.log("here")
+  if (!isTakenCourseNull() && takenCourse.courseCode === 5710232) {
+    console.log('here');
   }
-  
 
-  if(startGrade==='Herkes alabilir'){
+  if (startGrade === 'Herkes alabilir') {
     return true;
   }
-  if(startGrade==='Hic almayanlar alabilir'){
-    if(isTakenCourseNull())
+  if (startGrade === 'Hic almayanlar alabilir') {
+    if (isTakenCourseNull()) return true;
+    return false;
+  }
+  if (startGrade === 'Hic almayanlar veya DD ve alti') {
+    if (isTakenCourseNull()) return true;
+    if (takenCourse.grade >= 'DD') {
       return true;
+    }
     return false;
   }
-  if(startGrade==='Hic almayanlar veya DD ve alti'){
-    if(isTakenCourseNull()) return true;
-    if(takenCourse.grade>='DD'){ return true;}
+  if (startGrade === 'Hic almayanlar veya Basarisizlar (FD ve alti)') {
+    if (isTakenCourseNull()) return true;
+    if (takenCourse.grade >= 'FD') {
+      return true;
+    }
     return false;
   }
-  if(startGrade==='Hic almayanlar veya Basarisizlar (FD ve alti)'){
-    if(isTakenCourseNull()) return true;
-    if(takenCourse.grade>='FD'){ return true;}
+  if (startGrade === 'Hic almayanlar veya BB ve alti') {
+    if (isTakenCourseNull()) return true;
+    if (takenCourse.grade >= 'BB') {
+      return true;
+    }
     return false;
   }
-  if(startGrade==='Hic almayanlar veya BB ve alti'){
-    if(isTakenCourseNull()) return true;
-    if(takenCourse.grade>='BB'){ return true;}
+  if (startGrade === 'Hic almayanlar veya CC ve alti') {
+    if (isTakenCourseNull()) return true;
+    if (takenCourse.grade >= 'CC') {
+      return true;
+    }
     return false;
   }
-  if(startGrade==='Hic almayanlar veya CC ve alti'){
-    if(isTakenCourseNull()) return true;
-    if(takenCourse.grade>='CC'){ return true;}
-    return false;
-  }
-  if(isTakenCourseNull()) return true;
-  if(startGrade.length===2){
-    if(takenCourse.grade<startGrade && takenCourse.grade>endGrade){
+  if (isTakenCourseNull()) return true;
+  if (startGrade.length === 2) {
+    if (takenCourse.grade < startGrade && takenCourse.grade > endGrade) {
       return true;
     }
     return false;
@@ -888,4 +907,3 @@ function getIfGradeOK(startGrade: StartEndGrades, endGrade: StartEndGrades, take
     return takenCourse === null || takenCourse === undefined;
   }
 }
-

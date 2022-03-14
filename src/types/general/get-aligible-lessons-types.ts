@@ -10,19 +10,19 @@ export type GetAligibleLessonsInputDto = {
 };
 export type TakenCourse = {
   CourseCode: string;
-  grade: Grade
-    
+  grade: Grade;
 };
 
-export type Grade =  'AA'
-| 'BA'
-| 'BB'
-| 'CB'
-| 'CC'
-| 'DC'
-| 'DD'
-| 'FF'
-| 'FD'
-| 'NA'
-| 'S'
-| 'U'; //TODO
+export type Grade =
+  | 'AA'
+  | 'BA'
+  | 'BB'
+  | 'CB'
+  | 'CC'
+  | 'DC'
+  | 'DD'
+  | 'FF'
+  | 'FD'
+  | 'NA'
+  | 'S'
+  | 'U'; //TODO

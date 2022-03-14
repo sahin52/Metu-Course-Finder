@@ -71,4 +71,4 @@ export type StartEndGrades =
   | 'BA'
   | 'Hic almayanlar veya BB ve alti';
 
-  export type MinGrade =  'DD'| 'S'| 'CB'| 'CC'| 'BB'| 'FF'| 'FD'| 'U';
+export type MinGrade = 'DD' | 'S' | 'CB' | 'CC' | 'BB' | 'FF' | 'FD' | 'U';
