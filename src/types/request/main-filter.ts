@@ -7,6 +7,9 @@ export type MainFilterInputDto = {
     minWantedCredit: string
     istenilenBolum?: number
     ogrencininBolumu: string
+    soyad: string
+    cumGpa: number
+    year: number
 }
 
 export type TakenCourseRequestDto={

@@ -45,11 +45,11 @@ export interface Criteria {
   maxCumGpa: number;
   minYear: number;
   maxYear: number;
-  startGrade: startEndGrades; //"Hic almayanlar alabilir"|"Herkes alabilir";
-  endGrade: startEndGrades; // "Hic almayanlar alabilir"|"Herkes alabilir";
+  startGrade: StartEndGrades; //"Hic almayanlar alabilir"|"Herkes alabilir";
+  endGrade: StartEndGrades; // "Hic almayanlar alabilir"|"Herkes alabilir";
 }
 
-export type startEndGrades =
+export type StartEndGrades =
   | 'Hic almayanlar veya Basarisizlar (FD ve alti)'
   | 'Kaldi'
   | 'CC'

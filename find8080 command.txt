@@ -1,0 +1,1 @@
+netstat -a -n -o | find "8080"

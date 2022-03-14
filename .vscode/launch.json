@@ -6,8 +6,10 @@
         "request": "attach",
         "name": "Node: Nodemon",
         "processId": "${command:PickProcess}",
+        "port": 8080,
         "restart": true,
-        "protocol": "inspector"
+        "protocol": "inspector",
+        "localRoot": "${workspaceFolder}/src",
       }
     ]
   }
