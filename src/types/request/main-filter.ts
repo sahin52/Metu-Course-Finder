@@ -10,6 +10,7 @@ export type MainFilterInputDto = {
   soyad: string;
   cumGpa: number;
   year: number;
+  [key: string]: any
 };
 
 export type TakenCourseRequestDto = {

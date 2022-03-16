@@ -28,22 +28,45 @@ let input: MainFilterInputDto = {
   wantsKibrisOdtu: false,
   wantsNormalOdtu: true,
   minWantedCredit: '2.00',
-  ogrencininBolumu: 'GENE',
+  ogrencininBolumu: 'CENG',
   cumGpa: 2.60,
-  soyad: 'AS',
+  soyad: 'KA',
   year: 3,
 };
-homeController.MainFiltering(input);
+// homeController.MainFiltering(input);
 router.get('/update-database', async (req, res) => {
   const result = { deneme: 123 };
   await homeController.GetAllDepartmentsCourses_Main();
   res.json(result);
 });
 router.get('/get-aligible-courses', async (req, res) => {
-  homeController.MainFiltering(input);
+  homeController.MainFiltering(input,res);
 });
 router.get('/g', async (req, res) => {
   homeController.CrFilter();
+  const result = { deneme: 123 };
+  res.json(result)
 });
-
+router.get('/get-details',(req,res  )=>{
+  console.log(req.query)
+  let query:any = req.query;
+  console.log(query)
+  if(query.wantsKibrisOdtu==='true'){
+    query.wantsKibrisOdtu=true;
+  }
+  if(query.wantsKibrisOdtu==='false'){
+    query.wantsKibrisOdtu=false;
+  }
+  if(query.wantsNormalOdtu==='true'){
+    query.wantsNormalOdtu=true;
+  }
+  if(query.wantsNormalOdtu==='false'){
+    query.wantsNormalOdtu=false;
+  }
+  query.cumGpa = parseFloat(query.cumGpa)
+  query.year = parseInt(query.year);
+  query.istenilenBolum = parseInt(query.istenilenBolum)
+  if(query.takenCourses===undefined) query.takenCourses=[]
+  homeController.MainFiltering(query,res);
+})
 export default router;

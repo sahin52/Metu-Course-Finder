@@ -46,6 +46,21 @@ export const getIlkGiris = (req: Request, res: Response) => {
   readFunc();
   res.json(result);
 };
+function replaceTurk(text: string){
+  return text
+        .replace(/Ğ/g, "G")
+        .replace(/ğ/g, "g") 
+        .replace(/Ü/g, "U") 
+        .replace(/ü/g, "u") 
+        .replace(/Ş/g, "S") 
+        .replace(/ş/g, "s") 
+        .replace(/İ/g, "I") 
+        .replace(/ı/g, "i") 
+        .replace(/Ö/g, "O")
+        .replace(/ö/g, "o") 
+        .replace(/Ç/g, "C") 
+        .replace(/ç/g, "c");
+}
 export async function GetAllDepartmentsCourses_Main() {
   let allDeptsNum: number[] = JSON.parse(
     fs.readFileSync('helperfiles/important/all-depts.json').toString(),
@@ -207,21 +222,21 @@ export function GetFromCache(): CacheSection[] {
 export function CrFilter(){
   let sections = GetFromCache();
   let res: {[key:string]: string[]} = {}
+  let r = new Set()
   sections.forEach(section=>{
+    r.add(section.courseCode)
     section.criterias.forEach(criteria=>{
-      if(res[criteria.startGrade]===undefined){
-        res[criteria.startGrade] = [];
-      }
-      if(!res[criteria.startGrade].includes(criteria.endGrade))
-        res[criteria.startGrade].push(criteria.endGrade);
+      // r.add(criteria.givenDept)
     })
   })
-  fs.writeFileSync('CrfilterSonuc2',JSON.stringify(res));
-  fs.writeFileSync('CrfilterSonuc',JSON.stringify(res,null,4));
-  console.log(res);
+   fs.writeFileSync('CrfilterSonuc2',Array.from(r).join(','));
+   fs.writeFileSync('CrfilterSonuc',JSON.stringify(r.entries(),null,4));
+  console.log(r);
 }
-export function MainFiltering(input: MainFilterInputDto) {
+export function MainFiltering(input: MainFilterInputDto,rez:any) {
   let sections = GetFromCache();
+  console.log(JSON.stringify(input))
+  input.soyad=replaceTurk(replaceTurk(input.soyad).toUpperCase())
   let res = sections
     .filter(
       (section) =>
@@ -232,7 +247,7 @@ export function MainFiltering(input: MainFilterInputDto) {
       (section) => section.credit.substring(0, 4) >= input.minWantedCredit,
     )
     .filter((section) => {
-      if (input.istenilenBolum === undefined) return true;
+      if (input.istenilenBolum === undefined || input.istenilenBolum === 0 || input.istenilenBolum === null ) return true;
       return (
         input.istenilenBolum !== undefined &&
         section.bolumCode === input.istenilenBolum
@@ -278,9 +293,11 @@ export function MainFiltering(input: MainFilterInputDto) {
       });
       return res;
     });
+    rez.json(res);
   console.log(JSON.stringify(res, null, 4));
   console.log(res.length);
   fs.writeFileSync("tempsonuc",JSON.stringify(res, null, 4));
+  return res;
   // isKibris
   // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar:
   ////////// SetNo'ya ve ders alımına göre filtrele
