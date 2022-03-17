@@ -1,1 +1,2 @@
 netstat -a -n -o | findstr "8080"
+taskkill /F /PID <pid>

@@ -15,7 +15,7 @@ import {
 import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
-import { p, locations, removeNonNumbers } from '@/utils/p';
+import {  locations, removeNonNumbers } from '@/utils/p';
 import { getSectionIdsAndInstructorsFromHtmlString } from '@/controller/home';
 import { MainFilterInputDto } from '@/types/request/main-filter';
 
@@ -48,9 +48,7 @@ router.get('/g', async (req, res) => {
   res.json(result)
 });
 router.get('/get-details',(req,res  )=>{
-  console.log(req.query)
   let query:any = req.query;
-  console.log(query)
   if(query.wantsKibrisOdtu==='true'){
     query.wantsKibrisOdtu=true;
   }

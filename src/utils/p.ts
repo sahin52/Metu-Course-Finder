@@ -1,4 +1,3 @@
-export const p = console.log;
 
 export function locations(substring: string, str: string) {
   var a = [],

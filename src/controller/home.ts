@@ -21,7 +21,7 @@ import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
 import cache from 'memory-cache';
-import { p, locations, removeNonNumbers } from '@/utils/p';
+import { locations, removeNonNumbers } from '@/utils/p';
 import {
   MainFilterInputDto,
   TakenCourseRequestDto,
@@ -68,8 +68,6 @@ export async function GetAllDepartmentsCourses_Main() {
   let main: Main = { bolumler: [] };
   for (let i = 0; i < allDeptsNum.length; i++) {
     const deptNum = allDeptsNum[i];
-    console.log('deptNum');
-    console.log(deptNum);
 
     let f = await fetch(
       'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
@@ -143,7 +141,6 @@ export async function GetAllDepartmentsCourses_Main() {
         doc,
       )
       .toString();
-    console.log(totalCourses);
     let bolum: Bolum = {
       isInfoFound: true,
       dersler: await getDersler(doc, totalCourses, deptNum, setCooki),
@@ -171,7 +168,6 @@ export function tempApiTrials() {
       value.forEach((pre) => res.add(pre.MinGrade)),
     ),
   );
-  console.log(res);
 }
 const groupBy = function (xs: any[], key: string) {
   return xs.reduce(function (rv: any, x: any) {
@@ -183,7 +179,6 @@ export function GetFromCache(): CacheSection[] {
   // Try Get From Cache
   var veri: CacheSection[] = cache.get(cacheKey);
   if (veri === null) {
-    p('veri null');
     let json: Main = JSON.parse(fs.readFileSync(allLessonsDataPath).toString());
     let filteredBolums = json.bolumler.filter(
       (i) =>
@@ -209,14 +204,13 @@ export function GetFromCache(): CacheSection[] {
         });
       });
     });
-    fs.writeFileSync('temp/cache.json', JSON.stringify(sections));
+    // fs.writeFileSync('temp/cache.json', JSON.stringify(sections));
     cache.put(cacheKey, sections);
     return sections;
     //// departman Acik mi, Ders Acmis mi,
     //// veriyi sadece kursa çevir: GetAllCoursesAndTheirPrerequisites And Their Sections
     //// bunu cache'ye kaydet
   }
-  p('veri not null');
   return veri;
 }
 export function CrFilter(){
@@ -229,13 +223,11 @@ export function CrFilter(){
       // r.add(criteria.givenDept)
     })
   })
-   fs.writeFileSync('CrfilterSonuc2',Array.from(r).join(','));
-   fs.writeFileSync('CrfilterSonuc',JSON.stringify(r.entries(),null,4));
-  console.log(r);
+  //  fs.writeFileSync('CrfilterSonuc2',Array.from(r).join(','));
+  //  fs.writeFileSync('CrfilterSonuc',JSON.stringify(r.entries(),null,4));
 }
 export function MainFiltering(input: MainFilterInputDto,rez:any) {
   let sections = GetFromCache();
-  console.log(JSON.stringify(input))
   input.soyad=replaceTurk(replaceTurk(input.soyad).toUpperCase())
   let res = sections
     .filter(
@@ -294,9 +286,6 @@ export function MainFiltering(input: MainFilterInputDto,rez:any) {
       return res;
     });
     rez.json(res);
-  console.log(JSON.stringify(res, null, 4));
-  console.log(res.length);
-  fs.writeFileSync("tempsonuc",JSON.stringify(res, null, 4));
   return res;
   // isKibris
   // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar:
@@ -339,20 +328,11 @@ export function readFunc() {
           sections.criteria.forEach((criter) => {});
         });
         ders.prerequisite.forEach((pre) => {
-          if (courseCodes.has(pre.CourseCode)) p(pre.Position);
+          
         });
       }),
     );
-  p('--------------------1');
-
-  console.log(result);
-  p('--------------------2');
-  console.log(startChars);
-  p('--------------------3');
-  console.log(endChars);
-  p('--------------------4');
-  p(positions);
-  p('--------------------5');
+  
 }
 
 export function getGivenDeptFromDoc(kacinci: number, document: Document) {
@@ -441,11 +421,9 @@ export function getSectionIdsAndInstructorsFromHtmlString(
   const sectionIdsStrings = submitSectionTextLocations.map((location) =>
     sectionsHtmlString.substring(location - 15, location - 5),
   );
-  console.log(sectionIdsStrings);
   const sectionIds = sectionIdsStrings.map((str) =>
     parseInt(removeNonNumbers(str)),
   );
-  console.log('sectionLen', sectionLen);
   let instrunctorNameStartLoc = submitSectionTextLocations.map(
     (location) =>
       sectionsHtmlString.slice(location).indexOf('FACE=ARIAL') + 11 + location,
@@ -525,17 +503,17 @@ export function getPrerequisitesFromString(textHtml: string) {
 
 function writeResult(main: Main) {
   let filename = `results_${new Date().toJSON().replace(/:/g, '-')}.json`;
-  fs.writeFileSync(
-    `real-req-results/${filename}`,
-    JSON.stringify(main, null, 4),
-  );
+  // fs.writeFileSync(
+  //   `real-req-results/${filename}`,
+  //   JSON.stringify(main, null, 4),
+  // );
 }
 function w(deptnum: number | string, text: any) {
   let dir = 'temp';
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
-  fs.writeFileSync(`temp/${deptnum}.html`, text);
+  // fs.writeFileSync(`temp/${deptnum}.html`, text);
 }
 
 async function getDersler(
@@ -572,7 +550,6 @@ async function getCourseInfo(
   courseCode: string,
   setCookie: string,
 ): Promise<CourseInfo> {
-  p('courseCode', courseCode);
   let courseInfoFetch = await fetch(
     'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/main.php',
     {
@@ -600,14 +577,13 @@ async function getCourseInfo(
       method: 'POST',
     },
   );
-  // console.log('responz');
-  // console.log(response);
+  
   let sectionsHtmlString = await courseInfoFetch.text();
   let dir = 'temp';
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
-  fs.writeFileSync(`temp/${courseCode}.html`, sectionsHtmlString);
+  // fs.writeFileSync(`temp/${courseCode}.html`, sectionsHtmlString);
   let sectionsDoc = new DOMParser({
     locator: {},
     errorHandler: {
@@ -618,39 +594,8 @@ async function getCourseInfo(
       },
     },
   }).parseFromString(sectionsHtmlString);
-  console.log('ewkk');
-  console.log(
-    xpath
-      .select(
-        '//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]',
-        sectionsDoc,
-      )
-      .toString(),
-  );
-  console.log(
-    xpath
-      .select('//*[@id="single_content"]/form/TABLE[1]/TR[1]', sectionsDoc)
-      .toString(),
-  );
-  console.log(
-    xpath
-      .select('//*[@id="single_content"]/form/TABLE[1]', sectionsDoc)
-      .toString(),
-  );
-  console.log(
-    xpath
-      .select('//*[@id="single_content"]/form/TABLE[2]', sectionsDoc)
-      .toString(),
-  );
-  console.log(
-    xpath
-      .select(
-        '//*[@id="single_content"]/form/TABLE[1]/TR[1]/TD[1]/FONT[1]/text()',
-        sectionsDoc,
-      )
-      .toString(),
-  );
-  p('done');
+  
+  
   let courseInfo: CourseInfo = {
     department: xpath
       .select(
@@ -725,7 +670,7 @@ async function getSectionBilgileri(
       },
     );
     let html_Text = await htmlResponse.text();
-    fs.writeFileSync(`temp/${courseCode}.${sectionId}.html`, html_Text);
+    // fs.writeFileSync(`temp/${courseCode}.${sectionId}.html`, html_Text);
     let doc = new DOMParser({
       locator: {},
       errorHandler: {
