@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: '<app-name>',
+      name: 'metu-course-finder',
       script: 'dist/src/index.js',
       // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
       exec_mode: 'cluster',
