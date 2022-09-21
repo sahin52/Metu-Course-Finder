@@ -67,6 +67,7 @@ export async function GetAllDepartmentsCourses_Main() {
   );
   let main: Main = { bolumler: [] };
   for (let i = 0; i < allDeptsNum.length; i++) {
+    console.log(i,"/", allDeptsNum.length,"is being processed")
     const deptNum = allDeptsNum[i];
 
     let f = await fetch(
@@ -92,7 +93,7 @@ export async function GetAllDepartmentsCourses_Main() {
           Referer: 'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/',
           'Referrer-Policy': 'strict-origin-when-cross-origin',
         },
-        body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=20212&submit_CourseList=Submit&hidden_redir=Login`,
+        body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=20221&submit_CourseList=Submit&hidden_redir=Login`,
         method: 'POST',
       },
     );
@@ -153,11 +154,12 @@ export async function GetAllDepartmentsCourses_Main() {
     //
     main.bolumler.push(bolum);
 
-    if (main.bolumler.length % 2 == 0) {
-      writeResult(main);
-    }
+    // if (main.bolumler.length % 2 == 0) {
+      writeResult(main,false);
+    // }
   }
-  writeResult(main);
+  writeResult(main,true);
+  console.log("bitti")
 }
 
 export function tempApiTrials() {
@@ -501,19 +503,29 @@ export function getPrerequisitesFromString(textHtml: string) {
   return res;
 }
 
-function writeResult(main: Main) {
+function writeResult(main: Main,saveToallLessonsDataPath: boolean) {
   let filename = `results_${new Date().toJSON().replace(/:/g, '-')}.json`;
-  // fs.writeFileSync(
-  //   `real-req-results/${filename}`,
-  //   JSON.stringify(main, null, 4),
-  // );
+  console.log("writing reult to "+filename);
+  fs.writeFileSync(
+    `real-req-results/${filename}`,
+    JSON.stringify(main, null, 4),
+  );
+  if(saveToallLessonsDataPath){
+    console.log("saving to all data path")
+    fs.writeFileSync(
+      `${allLessonsDataPath}`,
+      JSON.stringify(main, null, 4),
+    );
+  }
+  
 }
 function w(deptnum: number | string, text: any) {
   let dir = 'temp';
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
-  // fs.writeFileSync(`temp/${deptnum}.html`, text);
+  fs.writeFileSync(`temp/${deptnum}.html`, text);
+  console.log("written")
 }
 
 async function getDersler(

@@ -47,7 +47,7 @@ router.get('/g', async (req, res) => {
   const result = { deneme: 123 };
   res.json(result)
 });
-router.get('/get-details',(req,res  )=>{
+router.get('/get-details',(req,res  )=>{// main function
   let query:any = req.query;
   if(query.wantsKibrisOdtu==='true'){
     query.wantsKibrisOdtu=true;
