@@ -234,21 +234,11 @@ export function MainFiltering(input: MainFilterInputDto,rez:any) {
   input.soyad=replaceTurk(replaceTurk(input.soyad).toUpperCase());
   let res = sections
     .filter(
-      (section) =>{      
-        if(section.courseCode===2360219){
-          console.log("238");
-        }
-        
-        return   (input.wantsKibrisOdtu && section.isKibris) ||
-        (input.wantsNormalOdtu && !section.isKibris)}
+      (section) =>(input.wantsKibrisOdtu && section.isKibris) ||
+        (input.wantsNormalOdtu && !section.isKibris)
     )
     .filter(
-      (section) => {
-        if(section.courseCode===2360219){
-          console.log("243");
-        }
-        return section.credit.substring(0, 4) >= input.minWantedCredit}
-    )
+      (section) => section.credit.substring(0, 4) >= input.minWantedCredit)
     .filter((section) => {
       if (input.istenilenBolum === undefined || input.istenilenBolum === 0 || input.istenilenBolum === null ) return true;
       return (
@@ -257,16 +247,10 @@ export function MainFiltering(input: MainFilterInputDto,rez:any) {
       );
     })
     .filter((section) => {
-      if(section.courseCode===2360219){
-        console.log("252");
-      }
       let res =
         Object.keys(section.prereqisites).length === 0 ||
         Object.entries(section.prereqisites).some(([setNo, prerequisites], i) =>
           prerequisites.every((prerequisite) => {
-            if(section.courseCode===2360219 && section.sectionNumber===6){
-              console.log("252");
-            }
             let rez = input.takenCourses.some((inputcourse) => {
               let rezz =
                 inputcourse.courseCode === prerequisite.CourseCode.toString() &&
@@ -279,9 +263,6 @@ export function MainFiltering(input: MainFilterInputDto,rez:any) {
       return res;
     })
     .filter((section) => {
-      if(section.courseCode===2360219){
-        console.log("271");
-      }
       let res = true;
       if (section.criterias.length === 0) return true;
       res = section.criterias.some((criteria) => {
