@@ -14,6 +14,6 @@ export type MainFilterInputDto = {
 };
 
 export type TakenCourseRequestDto = {
-  courseCode: number;
+  courseCode: string; //this is actually string
   grade: Grade;
 };

@@ -22,7 +22,7 @@ import { MainFilterInputDto } from '@/types/request/main-filter';
 const router = Router();
 
 router.get('/', homeController.getAppInfo);
-router.get('/read', homeController.getIlkGiris);
+router.get('/read-test', homeController.getIlkGiris);
 let input: MainFilterInputDto = {
   takenCourses: [],
   wantsKibrisOdtu: false,
@@ -39,10 +39,10 @@ router.get('/update-database', async (req, res) => {
   await homeController.GetAllDepartmentsCourses_Main();
   res.json(result);
 });
-router.get('/get-aligible-courses', async (req, res) => {
+router.get('/get-aligible-courses-test', async (req, res) => {
   homeController.MainFiltering(input,res);
 });
-router.get('/g', async (req, res) => {
+router.get('/g-test', async (req, res) => {
   homeController.CrFilter();
   const result = { deneme: 123 };
   res.json(result)

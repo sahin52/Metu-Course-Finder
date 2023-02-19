@@ -93,7 +93,7 @@ export async function GetAllDepartmentsCourses_Main() {
           Referer: 'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/',
           'Referrer-Policy': 'strict-origin-when-cross-origin',
         },
-        body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=20221&submit_CourseList=Submit&hidden_redir=Login`,
+        body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=20222&submit_CourseList=Submit&hidden_redir=Login`,
         method: 'POST',
       },
     );
@@ -229,16 +229,25 @@ export function CrFilter(){
   //  fs.writeFileSync('CrfilterSonuc',JSON.stringify(r.entries(),null,4));
 }
 export function MainFiltering(input: MainFilterInputDto,rez:any) {
+  console.log("main filtering")
   let sections = GetFromCache();
-  input.soyad=replaceTurk(replaceTurk(input.soyad).toUpperCase())
+  input.soyad=replaceTurk(replaceTurk(input.soyad).toUpperCase());
   let res = sections
     .filter(
-      (section) =>
-        (input.wantsKibrisOdtu && section.isKibris) ||
-        (input.wantsNormalOdtu && !section.isKibris),
+      (section) =>{      
+        if(section.courseCode===2360219){
+          console.log("238");
+        }
+        
+        return   (input.wantsKibrisOdtu && section.isKibris) ||
+        (input.wantsNormalOdtu && !section.isKibris)}
     )
     .filter(
-      (section) => section.credit.substring(0, 4) >= input.minWantedCredit,
+      (section) => {
+        if(section.courseCode===2360219){
+          console.log("243");
+        }
+        return section.credit.substring(0, 4) >= input.minWantedCredit}
     )
     .filter((section) => {
       if (input.istenilenBolum === undefined || input.istenilenBolum === 0 || input.istenilenBolum === null ) return true;
@@ -248,22 +257,31 @@ export function MainFiltering(input: MainFilterInputDto,rez:any) {
       );
     })
     .filter((section) => {
+      if(section.courseCode===2360219){
+        console.log("252");
+      }
       let res =
         Object.keys(section.prereqisites).length === 0 ||
         Object.entries(section.prereqisites).some(([setNo, prerequisites], i) =>
           prerequisites.every((prerequisite) => {
-            let res = input.takenCourses.some((inputcourse) => {
-              let res =
-                inputcourse.courseCode === prerequisite.CourseCode &&
+            if(section.courseCode===2360219 && section.sectionNumber===6){
+              console.log("252");
+            }
+            let rez = input.takenCourses.some((inputcourse) => {
+              let rezz =
+                inputcourse.courseCode === prerequisite.CourseCode.toString() &&
                 isGradeGreater(inputcourse.grade, prerequisite.MinGrade);
-              return res;
+              return rezz;
             });
-            return res;
+            return rez;
           }),
         );
       return res;
     })
     .filter((section) => {
+      if(section.courseCode===2360219){
+        console.log("271");
+      }
       let res = true;
       if (section.criterias.length === 0) return true;
       res = section.criterias.some((criteria) => {
@@ -280,7 +298,7 @@ export function MainFiltering(input: MainFilterInputDto,rez:any) {
             criteria.startGrade,
             criteria.endGrade,
             input.takenCourses.filter(
-              (i) => i.courseCode === section.courseCode,
+              (i) => i.courseCode === section.courseCode.toString(),
             )[0],
           );
         return res;
