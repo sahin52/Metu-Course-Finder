@@ -46,28 +46,29 @@ export const getIlkGiris = (req: Request, res: Response) => {
   readFunc();
   res.json(result);
 };
-function replaceTurk(text: string){
+function replaceTurk(text: string) {
   return text
-        .replace(/Ğ/g, "G")
-        .replace(/ğ/g, "g") 
-        .replace(/Ü/g, "U") 
-        .replace(/ü/g, "u") 
-        .replace(/Ş/g, "S") 
-        .replace(/ş/g, "s") 
-        .replace(/İ/g, "I") 
-        .replace(/ı/g, "i") 
-        .replace(/Ö/g, "O")
-        .replace(/ö/g, "o") 
-        .replace(/Ç/g, "C") 
-        .replace(/ç/g, "c");
+    .replace(/Ğ/g, 'G')
+    .replace(/ğ/g, 'g')
+    .replace(/Ü/g, 'U')
+    .replace(/ü/g, 'u')
+    .replace(/Ş/g, 'S')
+    .replace(/ş/g, 's')
+    .replace(/İ/g, 'I')
+    .replace(/ı/g, 'i')
+    .replace(/Ö/g, 'O')
+    .replace(/ö/g, 'o')
+    .replace(/Ç/g, 'C')
+    .replace(/ç/g, 'c');
 }
 export async function GetAllDepartmentsCourses_Main() {
   let allDeptsNum: number[] = JSON.parse(
     fs.readFileSync('helperfiles/important/all-depts.json').toString(),
   );
+  const semester = '20231';
   let main: Main = { bolumler: [] };
   for (let i = 0; i < allDeptsNum.length; i++) {
-    console.log(i,"/", allDeptsNum.length,"is being processed")
+    console.log(i, '/', allDeptsNum.length, 'is being processed');
     const deptNum = allDeptsNum[i];
 
     let f = await fetch(
@@ -93,7 +94,7 @@ export async function GetAllDepartmentsCourses_Main() {
           Referer: 'https://oibs2.metu.edu.tr//View_Program_Course_Details_64/',
           'Referrer-Policy': 'strict-origin-when-cross-origin',
         },
-        body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=20222&submit_CourseList=Submit&hidden_redir=Login`,
+        body: `textWithoutThesis=1&select_dept=${deptNum}&select_semester=${semester}&submit_CourseList=Submit&hidden_redir=Login`,
         method: 'POST',
       },
     );
@@ -155,11 +156,11 @@ export async function GetAllDepartmentsCourses_Main() {
     main.bolumler.push(bolum);
 
     // if (main.bolumler.length % 2 == 0) {
-      writeResult(main,false);
+    writeResult(main, false);
     // }
   }
-  writeResult(main,true);
-  console.log("bitti")
+  writeResult(main, true);
+  console.log('bitti');
 }
 
 export function tempApiTrials() {
@@ -215,32 +216,39 @@ export function GetFromCache(): CacheSection[] {
   }
   return veri;
 }
-export function CrFilter(){
+export function CrFilter() {
   let sections = GetFromCache();
-  let res: {[key:string]: string[]} = {}
-  let r = new Set()
-  sections.forEach(section=>{
-    r.add(section.courseCode)
-    section.criterias.forEach(criteria=>{
+  let res: { [key: string]: string[] } = {};
+  let r = new Set();
+  sections.forEach((section) => {
+    r.add(section.courseCode);
+    section.criterias.forEach((criteria) => {
       // r.add(criteria.givenDept)
-    })
-  })
+    });
+  });
   //  fs.writeFileSync('CrfilterSonuc2',Array.from(r).join(','));
   //  fs.writeFileSync('CrfilterSonuc',JSON.stringify(r.entries(),null,4));
 }
-export function MainFiltering(input: MainFilterInputDto,rez:any) {
-  console.log("main filtering")
+export function MainFiltering(input: MainFilterInputDto, rez: any) {
+  console.log('main filtering');
   let sections = GetFromCache();
-  input.soyad=replaceTurk(replaceTurk(input.soyad).toUpperCase());
+  input.soyad = replaceTurk(replaceTurk(input.soyad).toUpperCase());
   let res = sections
     .filter(
-      (section) =>(input.wantsKibrisOdtu && section.isKibris) ||
-        (input.wantsNormalOdtu && !section.isKibris)
+      (section) =>
+        (input.wantsKibrisOdtu && section.isKibris) ||
+        (input.wantsNormalOdtu && !section.isKibris),
     )
     .filter(
-      (section) => section.credit.substring(0, 4) >= input.minWantedCredit)
+      (section) => section.credit.substring(0, 4) >= input.minWantedCredit,
+    )
     .filter((section) => {
-      if (input.istenilenBolum === undefined || input.istenilenBolum === 0 || input.istenilenBolum === null ) return true;
+      if (
+        input.istenilenBolum === undefined ||
+        input.istenilenBolum === 0 ||
+        input.istenilenBolum === null
+      )
+        return true;
       return (
         input.istenilenBolum !== undefined &&
         section.bolumCode === input.istenilenBolum
@@ -286,7 +294,7 @@ export function MainFiltering(input: MainFilterInputDto,rez:any) {
       });
       return res;
     });
-    rez.json(res);
+  rez.json(res);
   return res;
   // isKibris
   // prerequisitesi olan kursları icinden prerequisitesi uymayanları cikar:
@@ -328,12 +336,9 @@ export function readFunc() {
         ders.courseInfo.sectionlar.forEach((sections) => {
           sections.criteria.forEach((criter) => {});
         });
-        ders.prerequisite.forEach((pre) => {
-          
-        });
+        ders.prerequisite.forEach((pre) => {});
       }),
     );
-  
 }
 
 export function getGivenDeptFromDoc(kacinci: number, document: Document) {
@@ -502,21 +507,17 @@ export function getPrerequisitesFromString(textHtml: string) {
   return res;
 }
 
-function writeResult(main: Main,saveToallLessonsDataPath: boolean) {
+function writeResult(main: Main, saveToallLessonsDataPath: boolean) {
   let filename = `results_${new Date().toJSON().replace(/:/g, '-')}.json`;
-  console.log("writing reult to "+filename);
+  console.log('writing reult to ' + filename);
   fs.writeFileSync(
     `real-req-results/${filename}`,
     JSON.stringify(main, null, 4),
   );
-  if(saveToallLessonsDataPath){
-    console.log("saving to all data path")
-    fs.writeFileSync(
-      `${allLessonsDataPath}`,
-      JSON.stringify(main, null, 4),
-    );
+  if (saveToallLessonsDataPath) {
+    console.log('saving to all data path');
+    fs.writeFileSync(`${allLessonsDataPath}`, JSON.stringify(main, null, 4));
   }
-  
 }
 function w(deptnum: number | string, text: any) {
   let dir = 'temp';
@@ -524,7 +525,7 @@ function w(deptnum: number | string, text: any) {
     fs.mkdirSync(dir);
   }
   fs.writeFileSync(`temp/${deptnum}.html`, text);
-  console.log("written")
+  console.log('written');
 }
 
 async function getDersler(
@@ -588,7 +589,7 @@ async function getCourseInfo(
       method: 'POST',
     },
   );
-  
+
   let sectionsHtmlString = await courseInfoFetch.text();
   let dir = 'temp';
   if (!fs.existsSync(dir)) {
@@ -605,8 +606,7 @@ async function getCourseInfo(
       },
     },
   }).parseFromString(sectionsHtmlString);
-  
-  
+
   let courseInfo: CourseInfo = {
     department: xpath
       .select(
@@ -844,121 +844,128 @@ function getIfGradeOK(
   takenCourse: TakenCourseRequestDto,
 ) {
   // if(takenCourse===null || takenCourse===undefined) return false;
-  if(isTakenCourseNull()){
-    if(startGrade==="Hic almayanlar veya Basarisizlar (FD ve alti)" 
-    || startGrade==="Hic almayanlar alabilir"
-    || startGrade==="Herkes alabilir"
-    || startGrade==="Hic almayanlar veya DD ve alti"
-    || startGrade==="Hic almayanlar veya CC ve alti"
-    || startGrade==="Hic almayanlar veya BB ve alti"
-    ){
+  if (isTakenCourseNull()) {
+    if (
+      startGrade === 'Hic almayanlar veya Basarisizlar (FD ve alti)' ||
+      startGrade === 'Hic almayanlar alabilir' ||
+      startGrade === 'Herkes alabilir' ||
+      startGrade === 'Hic almayanlar veya DD ve alti' ||
+      startGrade === 'Hic almayanlar veya CC ve alti' ||
+      startGrade === 'Hic almayanlar veya BB ve alti'
+    ) {
       return true;
     }
     return false;
   }
-  if(startGrade==="Hic almayanlar veya Basarisizlar (FD ve alti)"){
-    if(takenCourse.grade>="FD") return true;
+  if (startGrade === 'Hic almayanlar veya Basarisizlar (FD ve alti)') {
+    if (takenCourse.grade >= 'FD') return true;
     return false;
   }
-  if(startGrade==="Kaldi"){
-    if(takenCourse.grade>="FD"){
+  if (startGrade === 'Kaldi') {
+    if (takenCourse.grade >= 'FD') {
       return true;
     }
     return false;
   }
-  if(startGrade==="CC"){
-    if(endGrade==="CC"){
-      if(takenCourse.grade==="CC") return true;
+  if (startGrade === 'CC') {
+    if (endGrade === 'CC') {
+      if (takenCourse.grade === 'CC') return true;
       return false;
     }
-    if(endGrade==="NA"){
-      if(takenCourse.grade>="CC" && takenCourse.grade<="NA") return true;
+    if (endGrade === 'NA') {
+      if (takenCourse.grade >= 'CC' && takenCourse.grade <= 'NA') return true;
       return false;
     }
-    if(endGrade==="FF"){
-      if(takenCourse.grade>="CC" && takenCourse.grade<="FF") return true;
+    if (endGrade === 'FF') {
+      if (takenCourse.grade >= 'CC' && takenCourse.grade <= 'FF') return true;
       return false;
     }
     return true;
   }
-  if(startGrade==="CB"){
-      if(endGrade==="CB"){
-        if(takenCourse.grade==="CB") return true;
-        return false;
-      }
-      return true;
-  }
-  if(startGrade==="DC"){
-    if(takenCourse.grade>="DC" && takenCourse.grade<=endGrade) return true;
+  if (startGrade === 'CB') {
+    if (endGrade === 'CB') {
+      if (takenCourse.grade === 'CB') return true;
       return false;
-  }
-  if(startGrade==="FD"){
-    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
-      return false;
-  }
-  if(startGrade==="FF"){
-    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
-      return false;
-  }
-  if(startGrade==="NA"){
-    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
-      return false;
-  }
-  if(startGrade==="Hic almayanlar alabilir"){
-    if(isTakenCourseNull()) return true;
-      return false;
-  }
-  if(startGrade==="Consent of dept" ||startGrade==="Herkes alabilir"){
+    }
     return true;
   }
-  if(startGrade==="Hic almayanlar veya DD ve alti"){
-    if(takenCourse.grade>="DD"){
-      return true
-    }
-    return false
+  if (startGrade === 'DC') {
+    if (takenCourse.grade >= 'DC' && takenCourse.grade <= endGrade) return true;
+    return false;
   }
-  if(startGrade==="Hic almayanlar veya CC ve alti"){
-    if(takenCourse.grade>="CC"){
+  if (startGrade === 'FD') {
+    if (takenCourse.grade >= startGrade && takenCourse.grade <= endGrade)
+      return true;
+    return false;
+  }
+  if (startGrade === 'FF') {
+    if (takenCourse.grade >= startGrade && takenCourse.grade <= endGrade)
+      return true;
+    return false;
+  }
+  if (startGrade === 'NA') {
+    if (takenCourse.grade >= startGrade && takenCourse.grade <= endGrade)
+      return true;
+    return false;
+  }
+  if (startGrade === 'Hic almayanlar alabilir') {
+    if (isTakenCourseNull()) return true;
+    return false;
+  }
+  if (startGrade === 'Consent of dept' || startGrade === 'Herkes alabilir') {
+    return true;
+  }
+  if (startGrade === 'Hic almayanlar veya DD ve alti') {
+    if (takenCourse.grade >= 'DD') {
       return true;
     }
     return false;
   }
-  if(startGrade==="U"){
-    if(endGrade==="U") {
-      if(takenCourse.grade==="U") return true;
+  if (startGrade === 'Hic almayanlar veya CC ve alti') {
+    if (takenCourse.grade >= 'CC') {
+      return true;
+    }
+    return false;
+  }
+  if (startGrade === 'U') {
+    if (endGrade === 'U') {
+      if (takenCourse.grade === 'U') return true;
       return false;
     }
-    if(endGrade==="NA"){
-      if(takenCourse.grade==="U" ||takenCourse.grade==="NA" ){
+    if (endGrade === 'NA') {
+      if (takenCourse.grade === 'U' || takenCourse.grade === 'NA') {
         return true;
       }
       return false;
     }
     return true;
   }
-  if(startGrade==="DD"){
-    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
-      return false;
-  }
-  if(startGrade==="Gecti"){
-    if(isTakenCourseNull()) return false;
-    return true;
-  }
-  if(startGrade==="BB"){
-    if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
+  if (startGrade === 'DD') {
+    if (takenCourse.grade >= startGrade && takenCourse.grade <= endGrade)
+      return true;
     return false;
   }
-  if(startGrade==="AA"){
+  if (startGrade === 'Gecti') {
+    if (isTakenCourseNull()) return false;
     return true;
   }
- if(startGrade==="BA"){
-  if(takenCourse.grade>=startGrade && takenCourse.grade<=endGrade) return true;
-  return false;
- }
- if(startGrade==="Hic almayanlar veya BB ve alti"){
-  if(takenCourse.grade>="BB")return true;
-  return false;
- }
+  if (startGrade === 'BB') {
+    if (takenCourse.grade >= startGrade && takenCourse.grade <= endGrade)
+      return true;
+    return false;
+  }
+  if (startGrade === 'AA') {
+    return true;
+  }
+  if (startGrade === 'BA') {
+    if (takenCourse.grade >= startGrade && takenCourse.grade <= endGrade)
+      return true;
+    return false;
+  }
+  if (startGrade === 'Hic almayanlar veya BB ve alti') {
+    if (takenCourse.grade >= 'BB') return true;
+    return false;
+  }
 
   return true;
 

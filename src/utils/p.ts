@@ -1,4 +1,3 @@
-
 export function locations(substring: string, str: string) {
   var a = [],
     i = -1;

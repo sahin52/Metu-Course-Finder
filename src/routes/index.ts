@@ -15,7 +15,7 @@ import {
 import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 import { dirname } from 'path';
-import {  locations, removeNonNumbers } from '@/utils/p';
+import { locations, removeNonNumbers } from '@/utils/p';
 import { getSectionIdsAndInstructorsFromHtmlString } from '@/controller/home';
 import { MainFilterInputDto } from '@/types/request/main-filter';
 
@@ -29,7 +29,7 @@ let input: MainFilterInputDto = {
   wantsNormalOdtu: true,
   minWantedCredit: '2.00',
   ogrencininBolumu: 'CENG',
-  cumGpa: 2.60,
+  cumGpa: 2.6,
   soyad: 'KA',
   year: 3,
 };
@@ -40,31 +40,32 @@ router.get('/update-database', async (req, res) => {
   res.json(result);
 });
 router.get('/get-aligible-courses-test', async (req, res) => {
-  homeController.MainFiltering(input,res);
+  homeController.MainFiltering(input, res);
 });
 router.get('/g-test', async (req, res) => {
   homeController.CrFilter();
   const result = { deneme: 123 };
-  res.json(result)
+  res.json(result);
 });
-router.get('/get-details',(req,res  )=>{// main function
-  let query:any = req.query;
-  if(query.wantsKibrisOdtu==='true'){
-    query.wantsKibrisOdtu=true;
+router.get('/get-details', (req, res) => {
+  // main function
+  let query: any = req.query;
+  if (query.wantsKibrisOdtu === 'true') {
+    query.wantsKibrisOdtu = true;
   }
-  if(query.wantsKibrisOdtu==='false'){
-    query.wantsKibrisOdtu=false;
+  if (query.wantsKibrisOdtu === 'false') {
+    query.wantsKibrisOdtu = false;
   }
-  if(query.wantsNormalOdtu==='true'){
-    query.wantsNormalOdtu=true;
+  if (query.wantsNormalOdtu === 'true') {
+    query.wantsNormalOdtu = true;
   }
-  if(query.wantsNormalOdtu==='false'){
-    query.wantsNormalOdtu=false;
+  if (query.wantsNormalOdtu === 'false') {
+    query.wantsNormalOdtu = false;
   }
-  query.cumGpa = parseFloat(query.cumGpa)
+  query.cumGpa = parseFloat(query.cumGpa);
   query.year = parseInt(query.year);
-  query.istenilenBolum = parseInt(query.istenilenBolum)
-  if(query.takenCourses===undefined) query.takenCourses=[]
-  homeController.MainFiltering(query,res);
-})
+  query.istenilenBolum = parseInt(query.istenilenBolum);
+  if (query.takenCourses === undefined) query.takenCourses = [];
+  homeController.MainFiltering(query, res);
+});
 export default router;
